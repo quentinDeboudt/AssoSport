@@ -8,10 +8,12 @@
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
 
         {% block stylesheets %}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous">
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
+            <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"></script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
