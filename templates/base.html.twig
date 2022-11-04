@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="initial-scale=1.0 , minimum-scale=1.0 , maximum-scale=1.0" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block header %}
+
+                <ul id="nav-bar">
+
+                    <a id="title" href="{{path('app_home')}}"> <h2>AssoSport</h2></a>
+
+
+                    <div id="AllLink">
+                        <li>
+                            <a class="link-nav-bar" href="{{path('app_home')}}" title="Accueil">Accueil</a>
+                        </li>
+                        <li>
+                            <a class="link-nav-bar" href="{{path('app_planning')}}" title="Cart/Menu">Planning</a>
+                        </li>
+                        {% if app.user%}
+                            <li>
+                                <a class="link-nav-bar" href="{{path('app_reservation')}}" title="Menu">Mes Réservation</a>
+                            </li>
+                        {% endif %}
+                    </div>
+
+                    <div>
+                        {% if app.user%}
+                            <div id="BlockProfil">
+                                <img src="{{ asset('Directory/IconProfil.png')}}"  alt="profil" id="img-profil">
+                                <div>
+                                    <p id="name_login">{{app.user.lastName}} | {{app.user.firstName}} </p>
+                                    <a id="logout" href="{{path('app_logout')}}">Déconection</a>
+                                </div>
+                            </div>
+                            {% else %}
+                                <div id="BlockProfil">
+                                    <img src="{{ asset('Directory/IconProfil.png')}}" alt="profil" id="img-profil">
+                                    <div>
+                                        <a id="login" href="{{path('app_login')}}">Connection</a>
+                                    </div>
+                                </div>
+
+                        {% endif %}
+                    </div>
+                </ul>
+
+        {% endblock %}
+
+        {% block body %}
+
+        {% endblock %}
+    </body>
+</html>

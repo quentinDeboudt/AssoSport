@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}AssoSport{% endblock %}
+
+{% block body %}
+
+    <!-- ##########_First bloc home_########## -->
+    <div id="Block-image">
+        <img id="Image-home-first" src="{{ asset('Directory/first-image-home.jpg')}}" alt="Image-home-sport">
+        <h2 id="Association">Association</h2>
+        <h2 id="Multisport">Multisport</h2>
+        <div id="div-btn-rejoindre">
+            <a id="Buttom-home-nous-rejoindre" href="{{path('app_register')}}" >Nous Rejoindre...</a>
+        </div>
+    </div>
+
+    <!-- ##########_Second bloc home_########## -->
+    <div class="background-color-black" >
+        <section id="Sudio-Multisport">
+            <div>
+                <img id="Image-home-sport-gim" src="{{ asset('Directory/Image-home-sport-gim.jpg') }}" alt="Image-home-sport-salle-gim">
+                <img id="Image-home-sport-acrobat" src="{{ asset('Directory/Image-home-sport-acrobat.png') }}" alt="Image-home-women-gim">
+            </div>
+            <div>
+                <div id="Title">
+                    <h3 id="STUDIO">STUDIO</h3>
+                    <h3 id="Multisport">Multisport</h3>
+                </div>
+                <article>
+                    <p>
+                        La Section Multisports , vous accueille
+                        pour une pratique sportive
+                        pluridisciplinaire en initiation.
+                        Venez découvrir quel sport vous fait
+                        vibrer dans le fair play et la bonne
+                        humeur.
+                    </p>
+                </article>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- ##########_Third bloc home_########## -->
+    <div class="background-color-grey" >
+        <section id="equipe">
+            <h3>L'EQUIPE !</h3>
+            <div id="block-all-coach">
+                <div>
+                    <img class="Image-home-Equipe" id="Image-home-Equipe-Romain" src="{{ asset('Directory/Image-home-Equipe-Romain.jpg') }}" alt="Image-home-sport-Romain">
+                    <h4>Romain</h4>
+                    <ul>
+                        <li>Foot</li>
+                        <li>Basket</li>
+                        <li>Course</li>
+                    </ul>
+                </div>
+                <div >
+                    <img class="Image-home-Equipe" id="Image-home-Equipe-Lucie" src="{{ asset('Directory/Image-home-Equipe-Lucie.png') }}" alt="Image-home-sport-Lucie">
+                    <h4>Lucie</h4>
+                    <ul>
+                        <li>Danse</li>
+                        <li>Yoga</li>
+                        <li>Muscu</li>
+                    </ul>
+                </div>
+                <div>
+                    <img class="Image-home-Equipe" id="Image-home-Equipe-Mike" src="{{ asset('Directory/Image-home-Equipe-Mike.jpg') }}" alt="Image-home-sport-Mike">
+                    <h4>Mike</h4>
+                    <ul>
+                        <li>Velo</li>
+                        <li>Boxe</li>
+                        <li>Judo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ##########_Fourth bloc home_########## -->
+    <div class="background-color-black" >
+        <section id="block-sante">
+            <div>
+                <h3 id="Meilleur">Meilleur</h3>
+                <h3 id="Santé">Santé...</h3>
+            </div>
+            <div id="block-image-santé">
+                <img id="Image-home-Santé" src="{{ asset('Directory/Image-home-Santé.png') }}" alt="Image-home-Santé">
+            </div>
+        </section>
+    </div>
+    <!-- ##########_Contact bloc home_########## -->
+    <div class="background-color-grey" >
+        <section id="block-contact">
+            <div>
+                <h3 id="Nous">Nous</h3>
+                <h3 id="Contacter">Contacter</h3>
+            </div>
+            <div id="block-all-contact">
+                <div> <p>06.43.35.57.67</p> </div>
+                <div> <p>M.Assoc@gmail.com</p> </div>
+                <div> <p>10 bis rue du moulin</p> <p>St-Grégoire</p> </div>
+            </div>
+    </div>
+    </section>
+    {% include 'Footer.html.twig' %}
+{% endblock %}
+
+
