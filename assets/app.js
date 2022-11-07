@@ -11,6 +11,8 @@ import './styles/app.css';
 // start the Stimulus application
 import './bootstrap';
 
+
+
 document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
 
@@ -21,10 +23,12 @@ document.addEventListener('DOMContentLoaded', function() {
         headerToolbar: {
             start: 'prev,next today',
             center: 'title',
-            end: 'dayGridMonth,timeGridWeek'
-        }
+            end: 'dayGridMonth,timeGridWeek',
+        },
+        /*events: { data:raw },*/
+        editable: true,
+        eventResizableFromStart: true
 
     });
-
     calendar.render();
 });
