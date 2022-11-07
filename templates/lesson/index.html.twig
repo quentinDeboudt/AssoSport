@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lesson index{% endblock %}
+
+{% block body %}
+    <h1>Lesson index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>NbPlace</th>
+                <th>Background_color</th>
+                <th>All_day</th>
+                <th>Border_color</th>
+                <th>Text_color</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.id }}</td>
+                <td>{{ lesson.Name }}</td>
+                <td>{{ lesson.StartTime ? lesson.StartTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lesson.EndTime ? lesson.EndTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lesson.NbPlace }}</td>
+                <td>{{ lesson.backgroundColor }}</td>
+                <td>{{ lesson.AllDay ? 'Yes' : 'No' }}</td>
+                <td>{{ lesson.borderColor }}</td>
+                <td>{{ lesson.textColor }}</td>
+                <td>
+                    <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
+                    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_lesson_new') }}">Create new</a>
+{% endblock %}

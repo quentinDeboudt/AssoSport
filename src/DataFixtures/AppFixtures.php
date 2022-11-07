@@ -2,8 +2,9 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Coach;
+use App\Entity\Location;
 use App\Entity\User;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -35,6 +36,25 @@ class AppFixtures implements ORMFixtureInterface
             ->setIsVerified(true)
         ;
         $manager->persist($User1);
+        $manager->flush();
+
+
+
+        $Coach1 = new Coach();
+        $Coach1 ->setName('Romain');
+        $manager->persist($Coach1);
+        $manager->flush();
+
+        $Coach2 = new Coach();
+        $Coach2 ->setName('Mike');
+        $manager->persist($Coach2);
+        $manager->flush();
+
+        $location1 = new Location();
+        $location1 ->setName('Salle de sport');
+        $location1 ->setAddress('10 rue de pichorons');
+
+        $manager->persist($location1);
         $manager->flush();
     }
 }

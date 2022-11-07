@@ -28,7 +28,7 @@ class Lesson
     #[ORM\Column]
     private ?int $NbPlace = null;
 
-    #[ORM\ManyToOne(inversedBy: 'lessons')]
+    #[ORM\ManyToOne(targetEntity: Location::class,inversedBy: 'lessons')]
     private ?Location $location = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
@@ -36,6 +36,18 @@ class Lesson
 
     #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'lessons')]
     private Collection $Participants;
+
+    #[ORM\Column(length: 7)]
+    private ?string $background_color = null;
+
+    #[ORM\Column]
+    private ?bool $All_day = null;
+
+    #[ORM\Column(length: 7)]
+    private ?string $border_color = null;
+
+    #[ORM\Column(length: 7)]
+    private ?string $text_color = null;
 
     public function __construct()
     {
@@ -100,6 +112,8 @@ class Lesson
         return $this->location;
     }
 
+
+
     public function setLocation(?Location $location): self
     {
         $this->location = $location;
@@ -130,6 +144,7 @@ class Lesson
     public function addParticipant(User $participant): self
     {
         if (!$this->Participants->contains($participant)) {
+            $this->Participants[] = $participant;
             $this->Participants->add($participant);
         }
 
@@ -139,6 +154,54 @@ class Lesson
     public function removeParticipant(User $participant): self
     {
         $this->Participants->removeElement($participant);
+
+        return $this;
+    }
+
+    public function getBackgroundColor(): ?string
+    {
+        return $this->background_color;
+    }
+
+    public function setBackgroundColor(string $background_color): self
+    {
+        $this->background_color = $background_color;
+
+        return $this;
+    }
+
+    public function isAllDay(): ?bool
+    {
+        return $this->All_day;
+    }
+
+    public function setAllDay(bool $All_day): self
+    {
+        $this->All_day = $All_day;
+
+        return $this;
+    }
+
+    public function getBorderColor(): ?string
+    {
+        return $this->border_color;
+    }
+
+    public function setBorderColor(string $border_color): self
+    {
+        $this->border_color = $border_color;
+
+        return $this;
+    }
+
+    public function getTextColor(): ?string
+    {
+        return $this->text_color;
+    }
+
+    public function setTextColor(string $text_color): self
+    {
+        $this->text_color = $text_color;
 
         return $this;
     }

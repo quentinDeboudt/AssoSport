@@ -13,6 +13,7 @@ import './bootstrap';
 
 document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
+
     let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'timeGridWeek',
         locale: 'fr',
@@ -22,7 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title',
             end: 'dayGridMonth,timeGridWeek'
         }
+
     });
+
     calendar.render();
 });
-
