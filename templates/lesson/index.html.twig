@@ -17,6 +17,8 @@
                 <th>All_day</th>
                 <th>Border_color</th>
                 <th>Text_color</th>
+                <th>Coach</th>
+                <th>Lieux</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -32,6 +34,8 @@
                 <td>{{ lesson.AllDay ? 'Yes' : 'No' }}</td>
                 <td>{{ lesson.borderColor }}</td>
                 <td>{{ lesson.textColor }}</td>
+                <td>{{ lesson.coach }}</td>
+                <td>{{ lesson.location }}</td>
                 <td>
                     <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
                     <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>

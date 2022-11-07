@@ -36,13 +36,13 @@ class LessonType extends AbstractType
             ->add('Location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',
-                'mapped' => false,
+
 
             ])
             ->add('Coach' ,EntityType::class, [
                 'class' => Coach::class,
                 'choice_label' => 'name',
-                'mapped' => false,
+
             ])
 
         ;
