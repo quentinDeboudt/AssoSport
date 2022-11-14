@@ -10,26 +10,3 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
-
-
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    let calendarEl = document.getElementById('calendar');
-
-    let calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek',
-        locale: 'fr',
-        timeZone: 'Europe/Paris',
-        headerToolbar: {
-            start: 'prev,next today',
-            center: 'title',
-            end: 'dayGridMonth,timeGridWeek',
-        },
-        events:
-        editable: true,
-        eventResizableFromStart: true
-
-    });
-    calendar.render();
-});
-*/
