@@ -1,8 +1,32 @@
 {% extends 'base.html.twig' %}
 
 
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"></script>
+    <script>
+        window.onload = () =>{
+            let calendarEl = document.querySelector("#calendar");
+            let calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'timeGridWeek',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek',
+                },
+                events: {{ data|raw }},
+                editable: true,
+                eventResizableFromStart: true
+            });
+            calendar.render();
+        }
+    </script>
+{% endblock %}
+
 
 {% block title %}Planning{% endblock %}
+
 
 
 
@@ -31,3 +55,5 @@
 
     {% include 'Footer.html.twig' %}
 {% endblock %}
+
+

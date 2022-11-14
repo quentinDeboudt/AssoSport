@@ -12,7 +12,7 @@ import './styles/app.css';
 import './bootstrap';
 
 
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
     let calendarEl = document.getElementById('calendar');
 
@@ -25,10 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
             center: 'title',
             end: 'dayGridMonth,timeGridWeek',
         },
-        /*events: { data:raw },*/
+        events:
         editable: true,
         eventResizableFromStart: true
 
     });
     calendar.render();
 });
+*/
