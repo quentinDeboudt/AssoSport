@@ -17,11 +17,11 @@
             </tr>
             <tr>
                 <th>StartTime</th>
-                <td>{{ lesson.StartTime ? lesson.StartTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lesson.heureDebut ? lesson.heureDebut|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>EndTime</th>
-                <td>{{ lesson.EndTime ? lesson.EndTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lesson.heureFin ? lesson.heureFin|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>NbPlace</th>
@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <th>All_day</th>
-                <td>{{ lesson.AllDay ? 'Yes' : 'No' }}</td>
+                <td>{{ lesson.Day ? 'Yes' : 'No' }}</td>
             </tr>
             <tr>
                 <th>Border_color</th>

@@ -20,17 +20,17 @@ class LessonType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('StartTime', DateTimeType::class, [
+            ->add('heureDebur', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
             ])
-            ->add('EndTime', DateTimeType::class, [
+            ->add('heureFin', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
             ])
             ->add('NbPlace')
             ->add('background_color', ColorType::class)
-            ->add('All_day')
+            ->add('Day')
             ->add('border_color', ColorType::class)
             ->add('text_color', ColorType::class)
             ->add('Location', EntityType::class, [

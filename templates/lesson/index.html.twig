@@ -10,11 +10,11 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
-                <th>StartTime</th>
-                <th>EndTime</th>
+                <th>HeureDebut</th>
+                <th>HeureFin</th>
                 <th>NbPlace</th>
                 <th>Background_color</th>
-                <th>All_day</th>
+                <th>Day</th>
                 <th>Border_color</th>
                 <th>Text_color</th>
                 <th>Coach</th>
@@ -27,11 +27,11 @@
             <tr>
                 <td>{{ lesson.id }}</td>
                 <td>{{ lesson.Name }}</td>
-                <td>{{ lesson.StartTime ? lesson.StartTime|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ lesson.EndTime ? lesson.EndTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ lesson.heureDebut ? lesson.heureDebut|date('H:i:s') : '' }}</td>
+                <td>{{ lesson.HeureFin ? lesson.HeureFin|date('H:i:s') : '' }}</td>
                 <td>{{ lesson.NbPlace }}</td>
                 <td>{{ lesson.backgroundColor }}</td>
-                <td>{{ lesson.AllDay ? 'Yes' : 'No' }}</td>
+                <td>{{ lesson.Day ? 'Lundi' : 'Merdi' }}</td>
                 <td>{{ lesson.borderColor }}</td>
                 <td>{{ lesson.textColor }}</td>
                 <td>{{ lesson.coach }}</td>

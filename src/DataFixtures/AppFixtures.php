@@ -72,9 +72,9 @@ class AppFixtures implements ORMFixtureInterface
         $lesson1 = new Lesson();
         $lesson1
             ->setName("test")
-            ->setAllDay(false)
-            ->setStartTime(date_create('2022-11-09 16:00:00'))
-            ->setEndTime(date_create('2022-11-09 17:00:00'))
+            ->setHeureDebut(date_create('16:00:00'))
+            ->setHeureFin(date_create('17:00:00'))
+            ->setDay('Lundi')
             ->setCoach( $Coach2)
             ->setLocation($location1)
             ->setBackgroundColor('#B00020')

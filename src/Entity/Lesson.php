@@ -19,12 +19,6 @@ class Lesson
     #[ORM\Column(length: 255)]
     private ?string $Name = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $StartTime = null;
-
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $EndTime = null;
-
     #[ORM\Column]
     private ?int $NbPlace = null;
 
@@ -40,14 +34,20 @@ class Lesson
     #[ORM\Column(length: 7)]
     private ?string $background_color = null;
 
-    #[ORM\Column]
-    private ?bool $All_day = null;
-
     #[ORM\Column(length: 7)]
     private ?string $border_color = null;
 
     #[ORM\Column(length: 7)]
     private ?string $text_color = null;
+
+    #[ORM\Column(length: 100)]
+    private ?string $day = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heureDebut = null;
+
+    #[ORM\Column(type: Types::TIME_MUTABLE)]
+    private ?\DateTimeInterface $heureFin = null;
 
     public function __construct()
     {
@@ -71,30 +71,6 @@ class Lesson
         return $this;
     }
 
-    public function getStartTime(): ?\DateTimeInterface
-    {
-        return $this->StartTime;
-    }
-
-    public function setStartTime(\DateTimeInterface $StartTime): self
-    {
-        $this->StartTime = $StartTime;
-
-        return $this;
-    }
-
-    public function getEndTime(): ?\DateTimeInterface
-    {
-        return $this->EndTime;
-    }
-
-    public function setEndTime(\DateTimeInterface $EndTime): self
-    {
-        $this->EndTime = $EndTime;
-
-        return $this;
-    }
-
     public function getNbPlace(): ?int
     {
         return $this->NbPlace;
@@ -111,8 +87,6 @@ class Lesson
     {
         return $this->location;
     }
-
-
 
     public function setLocation(?Location $location): self
     {
@@ -170,18 +144,6 @@ class Lesson
         return $this;
     }
 
-    public function isAllDay(): ?bool
-    {
-        return $this->All_day;
-    }
-
-    public function setAllDay(bool $All_day): self
-    {
-        $this->All_day = $All_day;
-
-        return $this;
-    }
-
     public function getBorderColor(): ?string
     {
         return $this->border_color;
@@ -202,6 +164,42 @@ class Lesson
     public function setTextColor(string $text_color): self
     {
         $this->text_color = $text_color;
+
+        return $this;
+    }
+
+    public function getDay(): ?string
+    {
+        return $this->day;
+    }
+
+    public function setDay(string $day): self
+    {
+        $this->day = $day;
+
+        return $this;
+    }
+
+    public function getHeureDebut(): ?\DateTimeInterface
+    {
+        return $this->heureDebut;
+    }
+
+    public function setHeureDebut(\DateTimeInterface $heureDebut): self
+    {
+        $this->heureDebut = $heureDebut;
+
+        return $this;
+    }
+
+    public function getHeureFin(): ?\DateTimeInterface
+    {
+        return $this->heureFin;
+    }
+
+    public function setHeureFin(\DateTimeInterface $heureFin): self
+    {
+        $this->heureFin = $heureFin;
 
         return $this;
     }
