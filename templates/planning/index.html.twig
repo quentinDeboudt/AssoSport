@@ -42,11 +42,9 @@
                         <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Lundi' %}
-                                    <div class="Lesson-Block">
-                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        <p>{{ lesson.Name }}</p>
-                                        <p>Coach: {{ lesson.Coach }}</p>
-                                        <p>Location: {{ lesson.Location }}</p>
+                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
+                                        <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p class="Name">{{ lesson.Name }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
                                     </div>
                                 {% endif %}
@@ -58,11 +56,9 @@
                         <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Mardi' %}
-                                    <div class="Lesson-Block">
-                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        <p>{{ lesson.Name }}</p>
-                                        <p>Coach: {{ lesson.Coach }}</p>
-                                        <p>Location: {{ lesson.Location }}</p>
+                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
+                                        <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p class="Name">{{ lesson.Name }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
                                     </div>
                                 {% endif %}
@@ -74,11 +70,9 @@
                         <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Mercredi' %}
-                                    <div class="Lesson-Block">
-                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        <p>{{ lesson.Name }}</p>
-                                        <p>Coach: {{ lesson.Coach }}</p>
-                                        <p>Location: {{ lesson.Location }}</p>
+                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
+                                        <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p class="Name">{{ lesson.Name }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
                                     </div>
                                 {% endif %}
@@ -89,12 +83,10 @@
                         <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Jeudi' %}
-                                    <div class="Lesson-Block">
-                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        <p>{{ lesson.Name }}</p>
-                                        <p>Coach: {{ lesson.Coach }}</p>
-                                        <p>Location: {{ lesson.Location }}</p>
-                                        <p>Place: {{ lesson.NbPlace }}</p>
+                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
+                                        <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p class="Name">{{ lesson.Name }}</p>
+                                        <p>Place:{{ lesson.NbPlace }}</p>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -104,11 +96,9 @@
                         <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Vendredi' %}
-                                    <div class="Lesson-Block">
-                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        <p>{{ lesson.Name }}</p>
-                                        <p>Coach: {{ lesson.Coach }}</p>
-                                        <p>Location: {{ lesson.Location }}</p>
+                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
+                                        <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p class="Name">{{ lesson.Name }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
                                     </div>
                                 {% endif %}

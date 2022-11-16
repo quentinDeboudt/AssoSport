@@ -367,12 +367,23 @@ background-color: #D9D9D9 ;
     color: #FFFFFF;
 }
 .Lesson-Block{
-    background-color: #FFFFFF;
+
     border-radius: 15px;
     padding: 5px;
     color: #272727;
 }
-
+.Lesson-Block:hover{
+    background-color: #999999;
+}
+.Lesson-Block .heure{
+    margin: 0;
+}
+.Lesson-Block .Name{
+    margin: 0;
+    font: 25px "DejaVu Sans Mono",fantasy ;
+    display: flex;
+    justify-content: center;
+}
 
 
 /************************* Reservation **************************/

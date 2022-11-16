@@ -203,4 +203,5 @@ class Lesson
 
         return $this;
     }
+
 }
