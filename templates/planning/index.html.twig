@@ -18,7 +18,7 @@
         <!-- ##########_Second bloc Planning_########## -->
         <a href="{{path('app_lesson_index')}}"> <h2 style="width:fit-content; color: white">Ajouter</h2></a>
 
-        <table>
+        <table id="Table">
             <thead>
                 <tr>
                     <th colspan="7" class="center">
@@ -26,24 +26,25 @@
                     </th>
                 </tr>
                 <tr>
-                    <th width="17%">Lundi</th>
-                    <th width="17%">Mardi</th>
-                    <th width="17%">Mercredi</th>
-                    <th width="17%">Jeudi</th>
-                    <th width="17%">Vendredi</th>
-                    <th width="9%">Samedi</th>
-                    <th width="9%">Dimanche</th>
+                    <th >Lundi</th>
+                    <th >Mardi</th>
+                    <th >Mercredi</th>
+                    <th >Jeudi</th>
+                    <th >Vendredi</th>
+                    <th >Samedi</th>
+                    <th >Dimanche</th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr>
                     <td>
-                        <section id="Calendar-section" style="color: white">
+                        <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Lundi' %}
-                                    <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                                        <p>Name: {{ lesson.Name }}</p>
+                                    <div class="Lesson-Block">
+                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p>{{ lesson.Name }}</p>
                                         <p>Coach: {{ lesson.Coach }}</p>
                                         <p>Location: {{ lesson.Location }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
@@ -54,11 +55,12 @@
                     </td>
 
                     <td>
-                        <section id="Calendar-section" style="color: white">
+                        <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Mardi' %}
-                                    <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                                        <p>Name: {{ lesson.Name }}</p>
+                                    <div class="Lesson-Block">
+                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p>{{ lesson.Name }}</p>
                                         <p>Coach: {{ lesson.Coach }}</p>
                                         <p>Location: {{ lesson.Location }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
@@ -69,11 +71,12 @@
                     </td>
 
                     <td>
-                        <section id="Calendar-section" style="color: white">
+                        <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Mercredi' %}
-                                    <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                                        <p>Name: {{ lesson.Name }}</p>
+                                    <div class="Lesson-Block">
+                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p>{{ lesson.Name }}</p>
                                         <p>Coach: {{ lesson.Coach }}</p>
                                         <p>Location: {{ lesson.Location }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
@@ -83,11 +86,12 @@
                         </section>
                     </td>
                     <td>
-                        <section id="Calendar-section" style="color: white">
+                        <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Jeudi' %}
-                                    <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                                        <p>Name: {{ lesson.Name }}</p>
+                                    <div class="Lesson-Block">
+                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p>{{ lesson.Name }}</p>
                                         <p>Coach: {{ lesson.Coach }}</p>
                                         <p>Location: {{ lesson.Location }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
@@ -97,11 +101,12 @@
                         </section>
                     </td>
                     <td>
-                        <section id="Calendar-section" style="color: white">
+                        <section id="Calendar-section" >
                             {% for lesson in lessons%}
                                 {% if lesson.Day == 'Vendredi' %}
-                                    <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                                        <p>Name: {{ lesson.Name }}</p>
+                                    <div class="Lesson-Block">
+                                        <p>{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
+                                        <p>{{ lesson.Name }}</p>
                                         <p>Coach: {{ lesson.Coach }}</p>
                                         <p>Location: {{ lesson.Location }}</p>
                                         <p>Place: {{ lesson.NbPlace }}</p>
@@ -119,20 +124,6 @@
                 </tr>
             </tbody>
         </table>
-        {{dump(lessons) }}
-
-        {#<section id="Calendar-section" style="color: white">
-            {% for lesson in lessons%}
-                <div style="border: #DDDDDD solid 1px; width:fit-content; margin: 20px; background-color: {{ lesson.BackgroundColor }} ">
-                    <p>Start: {{ lesson.StartTime|date("m/d/Y H:m:s") }}</p>
-                    <p>End: {{ lesson.EndTime|date("m/d/Y H:m:s") }}</p>
-                    <p>Name: {{ lesson.Name }}</p>
-                    <p>Coach: {{ lesson.Coach }}</p>
-                    <p>Location: {{ lesson.Location }}</p>
-                    <p>Place: {{ lesson.NbPlace }}</p>
-                </div>
-            {% endfor %}
-        </section>#}
     </div>
 
     {% include 'Footer.html.twig' %}

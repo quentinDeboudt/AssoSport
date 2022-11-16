@@ -6,6 +6,7 @@ use App\Entity\Coach;
 use App\Entity\Lesson;
 use App\Entity\Location;
 use PhpParser\Node\Scalar\String_;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,7 +21,7 @@ class LessonType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('heureDebur', DateTimeType::class, [
+            ->add('heureDebut', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
             ])
@@ -30,7 +31,19 @@ class LessonType extends AbstractType
             ])
             ->add('NbPlace')
             ->add('background_color', ColorType::class)
-            ->add('Day')
+            ->add('Day', ChoiceType::class,
+            array(
+                'choices'=>array(
+                    'Lundi'=> 'Lundi',
+                    'Mardi'=> 'Mardi',
+                    'Mercredi'=> 'Mercredi',
+                    'Jeudi'=> 'Jeudi',
+                    'Vendredi'=> 'Vendredi',
+                    'Samedi'=> 'Samedi',
+                    'Dimanche'=> 'Dimanche',
+                )
+
+            ))
             ->add('border_color', ColorType::class)
             ->add('text_color', ColorType::class)
             ->add('Location', EntityType::class, [
