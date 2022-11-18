@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Lesson;
+use App\Entity\User;
 use App\Repository\LessonRepository;
 use ContainerRiS27O4\getSecurity_Validator_UserPasswordService;
 use phpDocumentor\Reflection\Types\Null_;
@@ -29,4 +31,51 @@ class PlanningController extends AbstractController
             'time' => $dt,
         ]);
     }
+
+
+    /*************************** Join Lesson ***************************/
+    /*******************************************************************/
+
+    #[Route('/join/{lesson}', name: 'join')]
+    public function join(Lesson $lesson, LessonRepository $lessonRepository ): Response
+    {
+        /**
+         * @var User $currentParticipant
+         */
+        $currentParticipant = $this->getUser();
+
+        $lesson->addParticipant($currentParticipant);
+        /*if (count($lesson->getParticipants()) == $lesson->getNbPlace()){
+
+        }*/
+
+        $lessonRepository->save($lesson, true);
+        $this->addFlash("success","Inscription validée.");
+        return $this->redirectToRoute('app_planning');
+
+    }
+
+
+    /*************************** desist Lesson ***************************/
+    /*******************************************************************/
+
+    #[Route('/desist/{lesson}', name: 'desist')]
+    public function desist(Lesson $lesson, LessonRepository $lessonRepository ): Response
+    {
+        /**
+         * @var User $currentParticipant
+         */
+        $currentParticipant = $this->getUser();
+
+        $lesson->removeParticipant($currentParticipant);
+        /*if (count($lesson->getParticipants()) == $lesson->getNbPlace()){
+
+        }*/
+
+        $lessonRepository->save($lesson, true);
+        $this->addFlash("success","Désistement validé.");
+        return $this->redirectToRoute('app_planning');
+
+    }
+
 }

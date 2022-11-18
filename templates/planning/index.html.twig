@@ -16,7 +16,7 @@
         </div>
 
         <!-- ##########_Second bloc Planning_########## -->
-        <a href="{{path('app_lesson_index')}}"> <h2 style="width:fit-content; color: white">Ajouter</h2></a>
+        <a href="{{path('app_lesson_new')}}"> <h2 style="width:fit-content; color: white">Ajouter une leçon</h2></a>
 
         <table id="Table">
             <thead>
@@ -45,7 +45,22 @@
                                     <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
                                         <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
                                         <p class="Name">{{ lesson.Name }}</p>
-                                        <p>Place: {{ lesson.NbPlace }}</p>
+                                        <p>Place: {{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                                        <a href="{{ path('app_lesson_show', { id : lesson.id}) }}">show</a>
+                                        <a href="{{ path('app_lesson_edit', { id : lesson.id}) }}">edit</a>
+
+                                        {%if app.user not in lesson.participants %}
+                                            <button>
+                                                <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
+                                            </button>
+                                        {%endif%}
+
+                                        {%if (app.user in lesson.participants) %}
+                                            <button>
+                                                <a href="{{path('desist', {'lesson': lesson.id})}}">Se désister</a>
+                                            </button>
+                                        {%endif%}
+
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -59,7 +74,9 @@
                                     <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
                                         <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
                                         <p class="Name">{{ lesson.Name }}</p>
-                                        <p>Place: {{ lesson.NbPlace }}</p>
+                                        <p>Place: {{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                                        <a href="{{ path('app_lesson_show', { id : lesson.id}) }}">show</a>
+                                        <a href="{{ path('app_lesson_edit', { id : lesson.id}) }}">edit</a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -73,7 +90,9 @@
                                     <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
                                         <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
                                         <p class="Name">{{ lesson.Name }}</p>
-                                        <p>Place: {{ lesson.NbPlace }}</p>
+                                        <p>Place: {{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                                        <a href="{{ path('app_lesson_show', { id : lesson.id}) }}">show</a>
+                                        <a href="{{ path('app_lesson_edit', { id : lesson.id}) }}">edit</a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -86,7 +105,9 @@
                                     <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
                                         <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
                                         <p class="Name">{{ lesson.Name }}</p>
-                                        <p>Place:{{ lesson.NbPlace }}</p>
+                                        <p>Place: {{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                                        <a href="{{ path('app_lesson_show', { id : lesson.id}) }}">show</a>
+                                        <a href="{{ path('app_lesson_edit', { id : lesson.id}) }}">edit</a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -99,7 +120,9 @@
                                     <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
                                         <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
                                         <p class="Name">{{ lesson.Name }}</p>
-                                        <p>Place: {{ lesson.NbPlace }}</p>
+                                        <p>Place: {{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                                        <a href="{{ path('app_lesson_show', { id : lesson.id}) }}">show</a>
+                                        <a href="{{ path('app_lesson_edit', { id : lesson.id}) }}">edit</a>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -115,7 +138,6 @@
             </tbody>
         </table>
     </div>
-
     {% include 'Footer.html.twig' %}
 {% endblock %}
 

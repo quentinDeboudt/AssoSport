@@ -21,6 +21,10 @@ class LessonController extends AbstractController
         ]);
     }
 
+
+
+    /*************************** New lesson ***************************/
+    /*******************************************************************/
     #[Route('/new', name: 'app_lesson_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LessonRepository $lessonRepository): Response
     {
@@ -40,6 +44,9 @@ class LessonController extends AbstractController
         ]);
     }
 
+
+    /*************************** Show lesson ***************************/
+    /*******************************************************************/
     #[Route('/{id}', name: 'app_lesson_show', methods: ['GET'])]
     public function show(Lesson $lesson): Response
     {
@@ -48,6 +55,9 @@ class LessonController extends AbstractController
         ]);
     }
 
+
+    /*************************** Modify lesson ***************************/
+    /*********************************************************************/
     #[Route('/{id}/edit', name: 'app_lesson_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
@@ -66,6 +76,9 @@ class LessonController extends AbstractController
         ]);
     }
 
+
+    /*************************** Delete lesson ***************************/
+    /*********************************************************************/
     #[Route('/{id}', name: 'app_lesson_delete', methods: ['POST'])]
     public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {

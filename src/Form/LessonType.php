@@ -30,7 +30,40 @@ class LessonType extends AbstractType
                 'time_widget' => 'single_text',
             ])
             ->add('NbPlace')
-            ->add('background_color', ColorType::class)
+            ->add('background_color',ChoiceType::class,
+                array(
+                    'choices'=>array(
+                        'jaune safran'=> '#EAC435',
+                        'jaune vif'=> '#FCAB10',
+
+                        'tarte orange'=> '#FB4D3D',
+                        'Coquelicot '=> '#F15025',
+                        'orange carotte '=> '#F18F01',
+
+                        'bleue ébloui'=> '#345995',
+                        'poudre bleue'=> '#A0D2DB',
+                        'bleue saphire'=> '#006E90',
+
+                        'Rouge rubis'=> '#CA1551',
+                        'Rouge feu'=> '#E3655B',
+
+                        'Vert Caraibes'=> '#03CEA4',
+                        'Vert moyen'=> '#5B8C5A',
+                        'Vert-'=> '#13EB73',
+                        'Vert océan'=> '#48BF84',
+                        'Vert émeraude'=> '#439775',
+                        'Vert myrte'=> '#32746D',
+
+                        'Violet'=> '#726DA8',
+                        'Violet lilas'=> '#89608E',
+                        'Violet sombre'=> '#623B5A',
+
+                        'rose de chine'=> '#E072A4',
+                        'rose clair'=> '#FFA5AB',
+                        'rose lavande'=> '#D8A7CA',
+                    )
+
+                ))
             ->add('Day', ChoiceType::class,
             array(
                 'choices'=>array(
@@ -44,8 +77,74 @@ class LessonType extends AbstractType
                 )
 
             ))
-            ->add('border_color', ColorType::class)
-            ->add('text_color', ColorType::class)
+            ->add('border_color',ChoiceType::class,
+                array(
+                    'choices'=>array(
+                        'jaune safran'=> '#EAC435',
+                        'jaune vif'=> '#FCAB10',
+
+                        'tarte orange'=> '#FB4D3D',
+                        'Coquelicot '=> '#F15025',
+                        'orange carotte '=> '#F18F01',
+
+                        'bleue ébloui'=> '#345995',
+                        'poudre bleue'=> '#A0D2DB',
+                        'bleue saphire'=> '#006E90',
+
+                        'Rouge rubis'=> '#CA1551',
+                        'Rouge feu'=> '#E3655B',
+
+                        'Vert Caraibes'=> '#03CEA4',
+                        'Vert moyen'=> '#5B8C5A',
+                        'Vert-'=> '#13EB73',
+                        'Vert océan'=> '#48BF84',
+                        'Vert émeraude'=> '#439775',
+                        'Vert myrte'=> '#32746D',
+
+                        'Violet'=> '#726DA8',
+                        'Violet lilas'=> '#89608E',
+                        'Violet sombre'=> '#623B5A',
+
+                        'rose de chine'=> '#E072A4',
+                        'rose clair'=> '#FFA5AB',
+                        'rose lavande'=> '#D8A7CA',
+                    )
+
+                ))
+            ->add('text_color',ChoiceType::class,
+                array(
+                    'choices'=>array(
+                        'jaune safran'=> '#EAC435',
+                        'jaune vif'=> '#FCAB10',
+
+                        'tarte orange'=> '#FB4D3D',
+                        'Coquelicot '=> '#F15025',
+                        'orange carotte '=> '#F18F01',
+
+                        'bleue ébloui'=> '#345995',
+                        'poudre bleue'=> '#A0D2DB',
+                        'bleue saphire'=> '#006E90',
+
+                        'Rouge rubis'=> '#CA1551',
+                        'Rouge feu'=> '#E3655B',
+
+                        'Vert Caraibes'=> '#03CEA4',
+                        'Vert moyen'=> '#5B8C5A',
+                        'Vert-'=> '#13EB73',
+                        'Vert océan'=> '#48BF84',
+                        'Vert émeraude'=> '#439775',
+                        'Vert myrte'=> '#32746D',
+
+                        'Violet'=> '#726DA8',
+                        'Violet lilas'=> '#89608E',
+                        'Violet sombre'=> '#623B5A',
+
+                        'rose de chine'=> '#E072A4',
+                        'rose clair'=> '#FFA5AB',
+                        'rose lavande'=> '#D8A7CA',
+                    )
+
+                ))
             ->add('Location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',

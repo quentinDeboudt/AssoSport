@@ -361,19 +361,24 @@ background-color: #D9D9D9 ;
 
 /********* calendar block in planning **********/
 #Table{
-    border: #FFFFFF Solid 1px;
     width: 95%;
     margin: auto;
     color: #FFFFFF;
 }
-.Lesson-Block{
+th{
+    border: white 2px solid;
+}
+td{
+    border-right: white 2px solid;
+    border-left: white 2px solid;
+    border-bottom: white 2px solid;
+}
 
+.Lesson-Block{
     border-radius: 15px;
     padding: 5px;
     color: #272727;
-}
-.Lesson-Block:hover{
-    background-color: #999999;
+    margin: 5px;
 }
 .Lesson-Block .heure{
     margin: 0;

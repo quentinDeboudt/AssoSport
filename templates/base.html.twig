@@ -30,11 +30,14 @@
                             <a class="link-nav-bar" href="{{path('app_home')}}" title="Accueil">Accueil</a>
                         </li>
                         <li>
-                            <a class="link-nav-bar" href="{{path('app_planning')}}" title="Cart/Menu">Planning</a>
+                            <a class="link-nav-bar" href="{{path('app_planning')}}" title="Planning">Planning</a>
                         </li>
                         {% if app.user%}
                             <li>
-                                <a class="link-nav-bar" href="{{path('app_reservation')}}" title="Menu">Mes Réservation</a>
+                                <a class="link-nav-bar" href="{{path('app_reservation')}}" title="Réservation">Mes Réservation</a>
+                            </li>
+                            <li>
+                                <a class="link-nav-bar" href="{{path('app_lesson_index')}}" title="Liste des leçon">List</a>
                             </li>
                         {% endif %}
                     </div>

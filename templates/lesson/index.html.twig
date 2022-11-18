@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lesson index{% endblock %}
+{% block title %}list des leçons{% endblock %}
 
 {% block body %}
-    <h1>Lesson index</h1>
+    <h1>list des leçons</h1>
 
     <table class="table">
         <thead>
@@ -49,5 +49,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_lesson_new') }}">Create new</a>
+    <a href="{{ path('app_lesson_new') }}">Ajouter une leçon</a>
 {% endblock %}
