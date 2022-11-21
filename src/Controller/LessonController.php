@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Lesson;
 use App\Form\LessonType;
 use App\Repository\LessonRepository;
+use App\Repository\StateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,13 +27,15 @@ class LessonController extends AbstractController
     /*************************** New lesson ***************************/
     /*******************************************************************/
     #[Route('/new', name: 'app_lesson_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, LessonRepository $lessonRepository): Response
+    public function new(Request $request, LessonRepository $lessonRepository, StateRepository $stateRepository): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $state = $stateRepository->findOneBy(['wording' => 'Activity opened']);
+            $lesson->setState($state);
             $lessonRepository->save($lesson, true);
 
             return $this->redirectToRoute('app_lesson_index', [], Response::HTTP_SEE_OTHER);

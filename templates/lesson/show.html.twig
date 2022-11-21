@@ -5,7 +5,7 @@
 {% block body %}
     <h1>leçon</h1>
 
-    <table class="table">
+    <table class="table-info">
         <tbody>
             <tr>
                 <th>Name</th>
@@ -22,10 +22,6 @@
             <tr>
                 <th>NbPlace</th>
                 <td>{{ lesson.NbPlace }}</td>
-            </tr>
-            <tr>
-                <th>Background_color</th>
-                <td>{{ lesson.backgroundColor }}</td>
             </tr>
             <tr>
                 <th>day</th>
@@ -49,10 +45,12 @@
             </tr>
         </tbody>
     </table>
+    <div>
+        <a href="{{ path('app_planning') }}">Retour</a>
 
-    <a href="{{ path('app_planning') }}">Retour</a>
+        <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
 
-    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
+        {{ include('lesson/_delete_form.html.twig') }}
+    </div>
 
-    {{ include('lesson/_delete_form.html.twig') }}
 {% endblock %}

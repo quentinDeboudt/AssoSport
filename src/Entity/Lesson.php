@@ -49,9 +49,14 @@ class Lesson
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $heureFin = null;
 
+    #[ORM\ManyToOne(inversedBy: 'lessons')]
+    private ?State $state = null;
+
+
     public function __construct()
     {
         $this->Participants = new ArrayCollection();
+        $this->State = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -200,6 +205,40 @@ class Lesson
     public function setHeureFin(\DateTimeInterface $heureFin): self
     {
         $this->heureFin = $heureFin;
+
+        return $this;
+    }
+
+    public function getState(): ?State
+    {
+        return $this->state;
+    }
+
+    public function setState(?State $state): self
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function addState(State $state): self
+    {
+        if (!$this->State->contains($state)) {
+            $this->State->add($state);
+            $state->setLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeState(State $state): self
+    {
+        if ($this->State->removeElement($state)) {
+            // set the owning side to null (unless already changed)
+            if ($state->getLesson() === $this) {
+                $state->setLesson(null);
+            }
+        }
 
         return $this;
     }

@@ -31,9 +31,10 @@ class LessonType extends AbstractType
             ])
             ->add('NbPlace')
             ->add('background_color',ChoiceType::class,
+
                 array(
                     'choices'=>array(
-                        'jaune safran'=> '#EAC435',
+                        'jaune safran'=> '#EAC435' ,
                         'jaune vif'=> '#FCAB10',
 
                         'tarte orange'=> '#FB4D3D',
@@ -62,7 +63,6 @@ class LessonType extends AbstractType
                         'rose clair'=> '#FFA5AB',
                         'rose lavande'=> '#D8A7CA',
                     )
-
                 ))
             ->add('Day', ChoiceType::class,
             array(

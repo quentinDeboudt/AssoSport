@@ -1,4 +1,15 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    {{ form_row(form.Name) }}
+    {{ form_row(form.heureDebut) }}
+    {{ form_row(form.heureFin) }}
+    {{ form_row(form.NbPlace) }}
+    {{ form_row(form.Day) }}
+    {{ form_row(form.Location) }}
+    {{ form_row(form.Coach) }}
+    {{ form_row(form.background_color) }}
+    {{ form_row(form.border_color) }}
+    {{ form_row(form.text_color) }}
+
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

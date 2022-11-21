@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\Coach;
 use App\Entity\Lesson;
 use App\Entity\Location;
+use App\Entity\State;
 use App\Entity\User;
 use App\Repository\CoachRepository;
 use Doctrine\Bundle\FixturesBundle\ORMFixtureInterface;
@@ -69,22 +70,68 @@ class AppFixtures implements ORMFixtureInterface
         $manager->persist($location2);
         $manager->flush();
 
+        $State1 = new State();
+        $State1 ->setWording('Activity opened');
+
+        $manager->persist($State1);
+        $manager->flush();
+
+        $State2 = new State();
+        $State2 ->setWording('Activity closed');
+
+        $manager->persist($State2);
+        $manager->flush();
+
         $lesson1 = new Lesson();
         $lesson1
-            ->setName("test")
+            ->setName("Boxe")
             ->setHeureDebut(date_create('16:00:00'))
             ->setHeureFin(date_create('17:00:00'))
             ->setDay('Lundi')
             ->setCoach( $Coach2)
             ->setLocation($location1)
-            ->setBackgroundColor('#B00020')
+            ->setBackgroundColor('#006E90')
             ->setBorderColor('#004D7B')
             ->setTextColor('#FFFFFF')
             ->setNbPlace(32)
+            ->setState($State1)
         ;
         $manager->persist($lesson1);
         $manager->flush();
 
+        $lesson2 = new Lesson();
+        $lesson2
+            ->setName("Run")
+            ->setHeureDebut(date_create('13:00:00'))
+            ->setHeureFin(date_create('14:00:00'))
+            ->setDay('Mardi')
+            ->setCoach( $Coach1)
+            ->setLocation($location2)
+            ->setBackgroundColor('#5B8C5A')
+            ->setBorderColor('#004D7B')
+            ->setTextColor('#FFFFFF')
+            ->setNbPlace(10)
+            ->setState($State1)
+        ;
+        $manager->persist($lesson2);
+        $manager->flush();
+
+        $lesson3 = new Lesson();
+        $lesson3
+            ->setName("Dance")
+            ->setHeureDebut(date_create('10:00:00'))
+            ->setHeureFin(date_create('11:00:00'))
+            ->setDay('Mercredi')
+            ->setCoach( $Coach2)
+            ->setLocation($location1)
+            ->setBackgroundColor('#F15025')
+            ->setBorderColor('#004D7B')
+            ->setTextColor('#FFFFFF')
+            ->setNbPlace(10)
+            ->setState($State1)
+        ;
+        $manager->persist($lesson3);
+        $manager->flush();
 
 
 

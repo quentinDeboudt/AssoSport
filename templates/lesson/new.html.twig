@@ -3,9 +3,12 @@
 {% block title %}leçon{% endblock %}
 
 {% block body %}
-    <h1>créer une nouvelle leçon</h1>
+    <h1 id="title-new-lesson">créer une nouvelle leçon</h1>
 
-    {{ include('lesson/_form.html.twig') }}
+    <div id="Block-new-Lesson">
+        {{ include('lesson/_form.html.twig') }}
+        <a href="{{ path('app_planning') }}">Retour</a>
+    </div>
 
-    <a href="{{ path('app_planning') }}">Retour</a>
+
 {% endblock %}
