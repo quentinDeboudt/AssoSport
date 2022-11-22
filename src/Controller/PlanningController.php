@@ -24,18 +24,21 @@ class PlanningController extends AbstractController
 
         foreach ($events as $event){
             $rdvs[] = [
-                'id' => $event->getId(),
-                'start' => $event->getStart()->format('y-m-d H:i:s'),
-                'end' => $event->getEnd()->format('y-m-d H:i:s'),
                 'title' => $event->getName(),
+                'start' => $event->getStart()->format('Y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'allDay' => false,
+                /*'allDay' => $event->isAllDay(),*/
                 'description' => $event->getName(),
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
                 'textColor' => $event->getTextColor(),
-                'allDay' => $event->isAllDay(),
+
+                'id' => $event->getId(),
             ];
         }
         $data = json_encode($rdvs);
+
 
         return $this->render('planning/index.html.twig', compact('data'));
 

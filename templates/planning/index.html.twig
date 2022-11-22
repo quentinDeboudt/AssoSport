@@ -26,6 +26,9 @@
                 editable: true,
                 eventResizableFromStart: true
             })
+            calendar.on('eventChange', (e) =>{
+                console.log(e);
+            })
             calendar.render()
         }
     </script>
