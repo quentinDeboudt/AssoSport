@@ -33,7 +33,6 @@ class PlanningController extends AbstractController
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
                 'textColor' => $event->getTextColor(),
-
                 'id' => $event->getId(),
             ];
         }
