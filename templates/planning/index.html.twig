@@ -2,6 +2,37 @@
 
 {% block title %}Planning{% endblock %}
 
+{% block stylesheets %}
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css" integrity="sha256-5veQuRbWaECuYxwap/IOE/DAwNxgm4ikX7nrgsqYp88=" crossorigin="anonymous" >
+     {{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+
+{% block javascripts %}
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"> </script>
+    <script>
+        window.onload = () => {
+            let calendarElt = document.querySelector("#calendrier")
+            let calendar = new FullCalendar.Calendar(calendarElt, {
+                initialView: 'timeGridWeek',
+                locale: 'fr',
+                timeZone: 'Europe/Paris',
+                headerToolbar: {
+                    start: 'prev,next today',
+                    center: 'title',
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                events: {{ data|raw }},
+                editable: true,
+                eventResizableFromStart: true
+            })
+            calendar.render()
+        }
+    </script>
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+
 
 
 
@@ -15,10 +46,23 @@
             <h2 id="go">GO !</h2>
         </div>
 
+
+        <!-- #########################  Calendar ############################"-->
+
+        <div id="calendrier" style="width: 90%; margin: auto;">
+
+        </div>
+
+        <!-- #################################################################"-->
+
+
+
+
+
         <!-- ##########_Second bloc Planning_########## -->
         <a href="{{path('app_lesson_new')}}"> <h2 style="width:fit-content; color: white">Ajouter une leçon</h2></a>
 
-        <table id="Table">
+       {#  <table id="Table">
             <thead>
                 <tr>
                     <th colspan="7" class="center">
@@ -248,7 +292,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table>#}
     </div>
     {% include 'Footer.html.twig' %}
 {% endblock %}

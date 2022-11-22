@@ -82,12 +82,14 @@ class AppFixtures implements ORMFixtureInterface
         $manager->persist($State2);
         $manager->flush();
 
+
+        /*
         $lesson1 = new Lesson();
         $lesson1
             ->setName("Boxe")
-            ->setHeureDebut(date_create('16:00:00'))
-            ->setHeureFin(date_create('17:00:00'))
-            ->setDay('Lundi')
+            ->setStart(date_create('23/10/22 10:00:00'))
+            ->setEnd(date_create('23/10/22 11:00:00'))
+            ->setAllDay(false)
             ->setCoach( $Coach2)
             ->setLocation($location1)
             ->setBackgroundColor('#006E90')
@@ -102,9 +104,9 @@ class AppFixtures implements ORMFixtureInterface
         $lesson2 = new Lesson();
         $lesson2
             ->setName("Run")
-            ->setHeureDebut(date_create('13:00:00'))
-            ->setHeureFin(date_create('14:00:00'))
-            ->setDay('Mardi')
+            ->setStart(date_create('22/10/22 10:00:00'))
+            ->setEnd(date_create('22/10/22 11:00:00'))
+            ->setAllDay(false)
             ->setCoach( $Coach1)
             ->setLocation($location2)
             ->setBackgroundColor('#5B8C5A')
@@ -119,9 +121,9 @@ class AppFixtures implements ORMFixtureInterface
         $lesson3 = new Lesson();
         $lesson3
             ->setName("Dance")
-            ->setHeureDebut(date_create('10:00:00'))
-            ->setHeureFin(date_create('11:00:00'))
-            ->setDay('Mercredi')
+            ->setStart(date_create('21/10/22 10:00:00'))
+            ->setEnd(date_create('21/10/22 11:00:00'))
+            ->setAllDay(false)
             ->setCoach( $Coach2)
             ->setLocation($location1)
             ->setBackgroundColor('#F15025')
@@ -132,7 +134,7 @@ class AppFixtures implements ORMFixtureInterface
         ;
         $manager->persist($lesson3);
         $manager->flush();
-
+*/
 
 
 

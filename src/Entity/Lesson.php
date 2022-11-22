@@ -40,17 +40,18 @@ class Lesson
     #[ORM\Column(length: 7)]
     private ?string $text_color = null;
 
-    #[ORM\Column(length: 100)]
-    private ?string $day = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $heureDebut = null;
-
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $heureFin = null;
 
     #[ORM\ManyToOne(inversedBy: 'lessons')]
     private ?State $state = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $start = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $end = null;
+
+    #[ORM\Column]
+    private ?bool $all_day = null;
 
 
     public function __construct()
@@ -173,42 +174,6 @@ class Lesson
         return $this;
     }
 
-    public function getDay(): ?string
-    {
-        return $this->day;
-    }
-
-    public function setDay(string $day): self
-    {
-        $this->day = $day;
-
-        return $this;
-    }
-
-    public function getHeureDebut(): ?\DateTimeInterface
-    {
-        return $this->heureDebut;
-    }
-
-    public function setHeureDebut(\DateTimeInterface $heureDebut): self
-    {
-        $this->heureDebut = $heureDebut;
-
-        return $this;
-    }
-
-    public function getHeureFin(): ?\DateTimeInterface
-    {
-        return $this->heureFin;
-    }
-
-    public function setHeureFin(\DateTimeInterface $heureFin): self
-    {
-        $this->heureFin = $heureFin;
-
-        return $this;
-    }
-
     public function getState(): ?State
     {
         return $this->state;
@@ -239,6 +204,42 @@ class Lesson
                 $state->setLesson(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getStart(): ?\DateTimeInterface
+    {
+        return $this->start;
+    }
+
+    public function setStart(\DateTimeInterface $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getEnd(): ?\DateTimeInterface
+    {
+        return $this->end;
+    }
+
+    public function setEnd(\DateTimeInterface $end): self
+    {
+        $this->end = $end;
+
+        return $this;
+    }
+
+    public function isAllDay(): ?bool
+    {
+        return $this->all_day;
+    }
+
+    public function setAllDay(bool $all_day): self
+    {
+        $this->all_day = $all_day;
 
         return $this;
     }

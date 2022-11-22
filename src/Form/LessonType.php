@@ -5,13 +5,10 @@ namespace App\Form;
 use App\Entity\Coach;
 use App\Entity\Lesson;
 use App\Entity\Location;
-use PhpParser\Node\Scalar\String_;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\ColorType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,11 +18,11 @@ class LessonType extends AbstractType
     {
         $builder
             ->add('Name')
-            ->add('heureDebut', DateTimeType::class, [
+            ->add('Start', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
             ])
-            ->add('heureFin', DateTimeType::class, [
+            ->add('end', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
             ])
@@ -64,16 +61,11 @@ class LessonType extends AbstractType
                         'rose lavande'=> '#D8A7CA',
                     )
                 ))
-            ->add('Day', ChoiceType::class,
+            ->add('AllDay', ChoiceType::class,
             array(
                 'choices'=>array(
-                    'Lundi'=> 'Lundi',
-                    'Mardi'=> 'Mardi',
-                    'Mercredi'=> 'Mercredi',
-                    'Jeudi'=> 'Jeudi',
-                    'Vendredi'=> 'Vendredi',
-                    'Samedi'=> 'Samedi',
-                    'Dimanche'=> 'Dimanche',
+                    'non'=> 'false',
+                    'oui'=> 'true'
                 )
 
             ))

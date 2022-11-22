@@ -7,14 +7,10 @@ use App\Entity\User;
 use App\Repository\LessonRepository;
 use App\Repository\StateRepository;
 use ContainerRiS27O4\getSecurity_Validator_UserPasswordService;
-use phpDocumentor\Reflection\Types\Null_;
-use PhpParser\Node\Scalar\String_;
-use PhpParser\Node\Stmt\Echo_;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime;
-use function MongoDB\BSON\toJSON;
+
 
 class PlanningController extends AbstractController
 {
@@ -22,21 +18,27 @@ class PlanningController extends AbstractController
     public function index( LessonRepository $lesson , StateRepository $stateRepository): Response
     {
 
-        $lessons = $lesson->findAll();
+        $events = $lesson->findAll();
 
+        $rdvs = [];
 
-        $dt = new \DateTime();
-        $dt->format('d/m/Y H:i:s');
+        foreach ($events as $event){
+            $rdvs[] = [
+                'id' => $event->getId(),
+                'start' => $event->getStart()->format('y-m-d H:i:s'),
+                'end' => $event->getEnd()->format('y-m-d H:i:s'),
+                'title' => $event->getName(),
+                'description' => $event->getName(),
+                'backgroundColor' => $event->getBackgroundColor(),
+                'borderColor' => $event->getBorderColor(),
+                'textColor' => $event->getTextColor(),
+                'allDay' => $event->isAllDay(),
+            ];
+        }
+        $data = json_encode($rdvs);
 
-        $stateClosed = $stateRepository->findAll();
-        $stateClosed =$stateClosed[0];
+        return $this->render('planning/index.html.twig', compact('data'));
 
-
-        return $this->render('planning/index.html.twig', [
-            'lessons' => $lessons,
-            'time' => $dt,
-            'state' => $stateClosed
-        ]);
     }
 
 
