@@ -336,7 +336,7 @@ background-color: #D9D9D9 ;
 /************************* Planning **************************/
 /***********************************************************/
 #AllPage-calendar{
-    background-color: #FFFFFF;
+    background-color: black;
     padding-bottom: 9rem;
 }
 #Image-plannig-first{
@@ -361,8 +361,36 @@ background-color: #D9D9D9 ;
 }
 /************************* calendar **************************/
 /****************************************************************/
+#calendrier{
+    width: 80%;
+    margin: auto;
+}
+/*** block Calendrier sans le header ***/
+.fc-view-harness{
+    background-color: #DDDDDD;
+    border-radius: 30px;
+}
+ /**** bordure autour du calendrier ****/
+.fc-theme-standard .fc-scrollgrid {
+    border: black solid 1px;
+}
 
+/**** bordure interieur des heures et des jours*** */
+.fc-theme-standard td, .fc-theme-standard th {
+    border: 1px solid black;
+}
+/*** texte jours et heures ***/
+.fc .fc-scroller-harness {
 
+}
+/*** title ***/
+.fc-toolbar-chunk h2{
+    color: #FFFFFF;
+}
+
+.fc th {
+    font-size: 30px;
+}
 
 
 

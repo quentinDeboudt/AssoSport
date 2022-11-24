@@ -14,6 +14,8 @@
         window.onload = () => {
             let calendarElt = document.querySelector("#calendrier")
             let calendar = new FullCalendar.Calendar(calendarElt, {
+                height: 770,
+
                 initialView: 'timeGridWeek',
                 hiddenDays: [0], //Cacher le dimanche 0=premier jour(dimanche)
                 slotMinTime: '08:00:00', //Commencer à 8h
@@ -22,9 +24,9 @@
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
-                    start: 'prev,next today',
-                    center: 'title',
-                    end: 'dayGridMonth,timeGridWeek'
+                    start: 'prev,next',
+                    center: 'title,today',
+                    end: 'dayGridMonth,timeGridWeek,'
                 },
                 events: {{ data|raw }},
                 editable: true,
@@ -53,7 +55,7 @@
 
         <!-- #########################  Calendar ############################"-->
 
-        <div id="calendrier" style="width: 90%; margin: auto;">
+        <div id="calendrier">
 
         </div>
 
