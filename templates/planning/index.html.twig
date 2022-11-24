@@ -15,6 +15,10 @@
             let calendarElt = document.querySelector("#calendrier")
             let calendar = new FullCalendar.Calendar(calendarElt, {
                 initialView: 'timeGridWeek',
+                hiddenDays: [0], //Cacher le dimanche 0=premier jour(dimanche)
+                slotMinTime: '08:00:00', //Commencer à 8h
+                slotMaxTime: '20:00:00', //finir à 20h
+
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
@@ -24,10 +28,7 @@
                 },
                 events: {{ data|raw }},
                 editable: true,
-                eventResizableFromStart: true
-            })
-            calendar.on('eventChange', (e) =>{
-                console.log(e);
+                eventResizableFromStart: true,
             })
             calendar.render()
         }

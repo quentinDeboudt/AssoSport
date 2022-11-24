@@ -27,9 +27,9 @@ class PlanningController extends AbstractController
                 'title' => $event->getName(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+                'place'=> $event->getNbPlace(),
+                'coach'=> $event->getCoach(),
                 'allDay' => false,
-                /*'allDay' => $event->isAllDay(),*/
-                'description' => $event->getName(),
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
                 'textColor' => $event->getTextColor(),
