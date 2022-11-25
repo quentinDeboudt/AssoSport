@@ -20,10 +20,10 @@ class PlanningController extends AbstractController
 
         $events = $lesson->findAll();
 
-        $rdvs = [];
+        $lessons = [];
 
         foreach ($events as $event){
-            $rdvs[] = [
+            $lessons[] = [
                 'title' => $event->getName(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
@@ -36,7 +36,7 @@ class PlanningController extends AbstractController
                 'id' => $event->getId(),
             ];
         }
-        $data = json_encode($rdvs);
+        $data = json_encode($lessons);
 
 
         return $this->render('planning/index.html.twig', compact('data'));
