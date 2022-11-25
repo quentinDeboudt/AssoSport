@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b1da88c32345638ee56b3831b42bfae7",
+    "content-hash": "5b9d6a135a6ebc855cb07ce01b4c28aa",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6834,6 +6834,82 @@
                 }
             ],
             "time": "2022-05-27T16:55:36+00:00"
+        },
+        {
+            "name": "symfony/ux-react",
+            "version": "v2.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/ux-react.git",
+                "reference": "c52b539edf299fa0e6237c11f8721a39100b3018"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/ux-react/zipball/c52b539edf299fa0e6237c11f8721a39100b3018",
+                "reference": "c52b539edf299fa0e6237c11f8721a39100b3018",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/webpack-encore-bundle": "^1.11"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^4.4|^5.0|^6.0",
+                "symfony/phpunit-bridge": "^5.2|^6.0",
+                "symfony/twig-bundle": "^4.4|^5.0|^6.0",
+                "symfony/var-dumper": "^4.4|^5.0|^6.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "thanks": {
+                    "name": "symfony/ux",
+                    "url": "https://github.com/symfony/ux"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\UX\\React\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Titouan Galopin",
+                    "email": "galopintitouan@gmail.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Integration of React in Symfony",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "symfony-ux"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/ux-react/tree/v2.5.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-09-08T14:28:44+00:00"
         },
         {
             "name": "symfony/validator",
