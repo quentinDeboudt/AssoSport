@@ -10,6 +10,7 @@ use ContainerRiS27O4\getSecurity_Validator_UserPasswordService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use function MongoDB\BSON\toJSON;
 
 
 class PlanningController extends AbstractController
@@ -27,8 +28,13 @@ class PlanningController extends AbstractController
                 'title' => $event->getName(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
+
                 'place'=> $event->getNbPlace(),
-                'coach'=> $event->getCoach(),
+                'coach'=> $event->getCoach()->getName(),
+                'location' => $event->getLocation()->getName(),
+                'resaParticipants' => $event->getParticipants()->count(),
+                'state' => $event->getState()->getWording(),
+
                 'allDay' => false,
                 'backgroundColor' => $event->getBackgroundColor(),
                 'borderColor' => $event->getBorderColor(),
@@ -37,6 +43,9 @@ class PlanningController extends AbstractController
             ];
         }
         $data = json_encode($lessons);
+
+
+
 
 
         return $this->render('planning/index.html.twig', compact('data'));

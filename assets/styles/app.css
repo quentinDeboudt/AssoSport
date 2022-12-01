@@ -1,6 +1,6 @@
-/*@tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities;*/
+@tailwind utilities;
 
 body {
     background-color: #272727;
@@ -379,7 +379,7 @@ background-color: #D9D9D9 ;
     border: black solid 1px;
 }
 
-/**** bordure interieur des heures et des jours*** */
+/**** bordure interieur des heures et des jours ****/
 .fc-theme-standard td, .fc-theme-standard th {
     border: 1px solid black;
 }
@@ -391,14 +391,128 @@ background-color: #D9D9D9 ;
 .fc-toolbar-chunk h2{
     color: #FFFFFF;
 }
-
 .fc th {
     font-size: 30px;
 }
 
+/*** Modal ***/
 
+/* The Modal (background) */
+#modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 5; /* Sit on top */
+    padding-top: 220px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
 
+/* Modal Content */
+#modal-content {
+    background-color: #FFFFFF;
+    margin: auto;
+    border-radius: 20px;
+    width: 40%;
+    height: 230px;
+}
+#modal-header{
+    padding-left: 20px;
+    background-color: #AAAAAA;
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+/* The Close Button */
+#close {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-family: fantasy;
+    z-index: 6;
+    color: #FFFFFF;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+#close:hover,
+#close:focus {
+    color: #B0413E;
+    cursor: pointer;
+}
+
+/****************** in modal *************************/
+#modal-body{
+    display: flex;
+    flex-direction: row;
+}
+
+#modal-body .container{
+    margin: 5px;
+    height: 195px;
+}
+#modal-body .container #places{
+    font-size: 30px;
+    display: flex;
+    flex-direction: row;
+    background-color: #AAAAAA;
+    color: black;
+    width: min-content;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 4px;
+}
+#modal-body .container #coach{
+    font-size: 30px;
+    background-color: #AAAAAA;
+    color: black;
+    width: min-content;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 4px;
+}
+#modal-body .container #lieu{
+    font-size: 30px;
+    background-color: #AAAAAA;
+    color: black;
+    width: max-content;
+    padding: 5px;
+    border-radius: 20px;
+    margin: 4px;
+}
+#modal-body .container #sport{
+    font-size: 50px;
+    font-family: fantasy;
+    color: black;
+    height: 250px;
+    padding-top: 35px;
+}
+#modal-body .container #btn-inscrire{
+    font-size: 20px;
+    background-color: #55af55;
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 0 14px 5px #AAAAAA;
+    transition-duration: 0.2s;
+    border: #AAAAAA solid 1px;
+    margin-right: 28px;
+}
+#modal-body .container #btn-inscrire:hover{
+    box-shadow: 0 0 14px 2px #AAAAAA;
+    border: #999999 solid .5px;
+}
+.container3{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 
 /************************* Reservation **************************/
 /****************************************************************/

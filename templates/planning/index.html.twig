@@ -14,19 +14,49 @@
         window.onload = () => {
             let calendarElt = document.querySelector("#calendrier")
             let calendar = new FullCalendar.Calendar(calendarElt, {
-                height: 770,
-
+                height: 820,
                 initialView: 'timeGridWeek',
                 hiddenDays: [0], //Cacher le dimanche 0=premier jour(dimanche)
                 slotMinTime: '08:00:00', //Commencer à 8h
                 slotMaxTime: '20:00:00', //finir à 20h
-
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
                     start: 'prev,next',
                     center: 'title,today',
-                    end: 'dayGridMonth,timeGridWeek,'
+                    end: 'dayGridMonth,timeGridWeek'
+                },
+                eventClick: function (info) {
+                    let obj1 = JSON.stringify(info.event.extendedProps);
+
+                    let positionDebutPlace = obj1.search("place") + 7;
+                    let positionDebutCoach = obj1.search("coach") + 8;
+                    let positionDebutLocation = obj1.search("location") + 11;
+                    let positionDebutState = obj1.search("state") + 8;
+                    let positionDebutParticipants = obj1.search("resaParticipants") + 18;
+
+                    let positionFinPlace = (obj1.search("coach") - positionDebutPlace - 2);
+                    let positionFinCoach = (obj1.search("location") - positionDebutCoach - 3);
+                    let positionFinLocation = (obj1.search("resaParticipants") - positionDebutLocation - 3);
+                    let positionFinParticipants = (obj1.search("state") - positionDebutParticipants - 2);
+                    let positionFinState = 15;
+
+                    document.querySelector('#modal-header').innerHTML = JSON.stringify(info.event.start).substr(12, 8) + " - " + JSON.stringify(info.event.end).substr(12, 8);
+                    document.querySelector('#sport').innerHTML = info.event.title;
+                    document.querySelector('#place').innerHTML = obj1.substr(positionDebutPlace,positionFinPlace);//place
+                    document.querySelector('#coach').innerHTML = obj1.substr(positionDebutCoach,positionFinCoach);//coach
+                    document.querySelector('#lieu').innerHTML = obj1.substr(positionDebutLocation,positionFinLocation);//location
+                    document.querySelector('#participants').innerHTML = obj1.substr(positionDebutParticipants,positionFinParticipants);//participants
+                    document.querySelector('#state').innerHTML = obj1.substr(positionDebutState,positionFinState);//state
+
+                    console.log(obj1);
+
+
+
+
+                    // When the user clicks the button, open the modal
+                    let modal = document.getElementById("modal");
+                    modal.style.display = "block";
                 },
                 events: {{ data|raw }},
                 editable: true,
@@ -34,276 +64,87 @@
             })
             calendar.render()
         }
+
+        // Get the modal
+        let modal = document.getElementById("modal");
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        }
+
+
+
     </script>
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
 
 
 
-
-
 {% block body %}
-
     <div id="AllPage-calendar">
-        <!-- ##########_First bloc Planning_########## -->
+
+        <!-- ##########_First bloc Planning_##########-->
         <div id="block-image-planning">
             <img id="Image-plannig-first" src="{{ asset('Directory/Image-plannig-first.png') }}" alt="Image-planning-sport">
             <h2 id="motive">Motivé ?</h2>
             <h2 id="go">GO !</h2>
         </div>
 
-        {# test de react: #}
+        {###################### test de react: ######################}
         <div {{ react_component('MyComponent', {'fullName': 'QuQU'}) }} style="color: #FFFFFF"></div>
 
+        <!--###################################### Modal ######################################-->
+        <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <span onclick="document.getElementById('modal').style.display='none'" id="close" title="Close Modal">×</span>
+            <div id="modal-content">
+                <div id="modal-header">
+                    <h5 id="modal-title">Titre</h5>
+                </div>
+                <div id="modal-body">
+                    <div class="container">
+                        <div id="places">
+                            <p id="participants">0</p>
+                            <p>/</p>
+                            <p id="place">0</p>
+                        </div>
+                        <p id="coach">0</p>
+                        <p id="lieu">0</p>
+                    </div>
+                    <div class="container">
+                        <div><p id="sport">Sport</p></div>
+                    </div>
+                    <div class="container container3">
 
-        <!-- #########################  Calendar ############################"-->
+                        <div><p id="state">0</p></div>
+                        <button id="btn-inscrire" type="button" >S'inscrire</button>
 
-        <div id="calendrier">
+                        {#
+                        {%if app.user not in lesson.participants %}
+                            <button>
+                                <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
+                            </button>
+                        {%endif%}
+
+                        {%if (app.user in lesson.participants) %}
+                            <button>
+                                <a href="{{path('desist', {'lesson': lesson.id})}}">Se désister</a>
+                            </button>
+                        {%endif%} #}
+
+                    </div>
+                </div>
+            </div>
         </div>
 
-
-
-        <!-- #################################################################"-->
-
-
-
-
-
-        <!-- ##########_Second bloc Planning_########## -->
+        <!--#########################  Calendar ############################"-->
         <a href="{{path('app_lesson_new')}}"> <h2 style="width:fit-content; color: white">Ajouter une leçon</h2></a>
 
-       {#  <table id="Table">
-            <thead>
-                <tr>
-                    <th colspan="7" class="center">
-                        {{ time|date('d M Y') }}
-                    </th>
-                </tr>
-                <tr>
-                    <th >Lundi</th>
-                    <th >Mardi</th>
-                    <th >Mercredi</th>
-                    <th >Jeudi</th>
-                    <th >Vendredi</th>
-                    <th >Samedi</th>
-                    <th >Dimanche</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>
-                        <section id="Calendar-section" >
-                            {% for lesson in lessons%}
-                                {% if lesson.Day == 'Lundi' %}
-                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
-                                        <div class="Name/Heure">
-                                            <div>
-                                                <p class="Name">{{ lesson.Name }}</p>
-                                                <a class="plusInfo" href="{{ path('app_lesson_show', { id : lesson.id}) }}">+ Information</a>
-                                            </div>
-                                            <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        </div>
-                                        <div class="place">
-                                            <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
-                                        </div>
-
-                                        <div class="Block-lesson-Btn">
-                                            {%if app.user not in lesson.participants %}
-                                                {% if not app.user %}
-                                                    <button class="btnLesson">
-                                                        <a  href="{{path('app_login')}}">S'inscrire</a>
-                                                    </button>
-                                                {% elseif app.user%}
-                                                    <button class="btnLesson">
-                                                        <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                                                    </button class="btnLesson">
-                                                {% endif %}
-                                            {%endif%}
-
-                                            {%if (app.user in lesson.participants) %}
-                                                <button class="btnLesson" >
-                                                    <a href="{{path('desist', {'lesson': lesson.id})}}">Se désinscrire</a>
-                                                </button>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </td>
-
-                    <td>
-                        <section id="Calendar-section" >
-                            {% for lesson in lessons%}
-                                {% if lesson.Day == 'Mardi' %}
-                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
-                                        <div class="Name/Heure">
-                                            <div>
-                                                <p class="Name">{{ lesson.Name }}</p>
-                                                <a class="plusInfo" href="{{ path('app_lesson_show', { id : lesson.id}) }}">+ Information</a>
-                                            </div>
-                                            <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        </div>
-                                        <div class="place">
-                                            <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
-                                        </div>
-
-                                        <div class="Block-lesson-Btn">
-                                            {%if app.user not in lesson.participants %}
-                                                {% if not app.user %}
-                                                    <button class="btnLesson">
-                                                        <a  href="{{path('app_login')}}">S'inscrire</a>
-                                                    </button>
-                                                {% elseif app.user%}
-                                                    <button class="btnLesson">
-                                                        <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                                                    </button class="btnLesson">
-                                                {% endif %}
-                                            {%endif%}
-
-                                            {%if (app.user in lesson.participants) %}
-                                                <button class="btnLesson" >
-                                                    <a href="{{path('desist', {'lesson': lesson.id})}}">Se désinscrire</a>
-                                                </button>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </td>
-
-                    <td>
-                        <section id="Calendar-section" >
-                            {% for lesson in lessons%}
-                                {% if lesson.Day == 'Mercredi' %}
-                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
-                                        <div class="Name/Heure">
-                                            <div>
-                                                <p class="Name">{{ lesson.Name }}</p>
-                                                <a class="plusInfo" href="{{ path('app_lesson_show', { id : lesson.id}) }}">+ Information</a>
-                                            </div>
-                                            <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        </div>
-                                        <div class="place">
-                                            <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
-                                        </div>
-
-                                        <div class="Block-lesson-Btn">
-                                            {%if app.user not in lesson.participants %}
-                                                {% if not app.user %}
-                                                    <button class="btnLesson">
-                                                        <a  href="{{path('app_login')}}">S'inscrire</a>
-                                                    </button>
-                                                {% elseif app.user%}
-                                                    <button class="btnLesson">
-                                                        <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                                                    </button class="btnLesson">
-                                                {% endif %}
-                                            {%endif%}
-
-                                            {%if (app.user in lesson.participants) %}
-                                                <button class="btnLesson" >
-                                                    <a href="{{path('desist', {'lesson': lesson.id})}}">Se désinscrire</a>
-                                                </button>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </td>
-                    <td>
-                        <section id="Calendar-section" >
-                            {% for lesson in lessons%}
-                                {% if lesson.Day == 'Jeudi' %}
-                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
-                                        <div class="Name/Heure">
-                                            <div>
-                                                <p class="Name">{{ lesson.Name }}</p>
-                                                <a class="plusInfo" href="{{ path('app_lesson_show', { id : lesson.id}) }}">+ Information</a>
-                                            </div>
-                                            <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        </div>
-                                        <div class="place">
-                                            <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
-                                        </div>
-
-                                        <div class="Block-lesson-Btn">
-                                            {%if app.user not in lesson.participants %}
-                                                {% if not app.user %}
-                                                    <button class="btnLesson">
-                                                        <a  href="{{path('app_login')}}">S'inscrire</a>
-                                                    </button>
-                                                {% elseif app.user%}
-                                                    <button class="btnLesson">
-                                                        <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                                                    </button class="btnLesson">
-                                                {% endif %}
-                                            {%endif%}
-
-                                            {%if (app.user in lesson.participants) %}
-                                                <button class="btnLesson" >
-                                                    <a href="{{path('desist', {'lesson': lesson.id})}}">Se désinscrire</a>
-                                                </button>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </td>
-                    <td>
-                        <section id="Calendar-section" >
-                            {% for lesson in lessons%}
-                                {% if lesson.Day == 'Vendredi' %}
-                                    <div class="Lesson-Block" style="background-color: {{ lesson.backgroundColor }};">
-                                        <div class="Name/Heure">
-                                            <div>
-                                                <p class="Name">{{ lesson.Name }}</p>
-                                                <a class="plusInfo" href="{{ path('app_lesson_show', { id : lesson.id}) }}">+ Information</a>
-                                            </div>
-                                            <p class="heure">{{ lesson.heureDebut|date('H')}}h{{ lesson.heureDebut|date('i')}} - {{ lesson.heureFin|date('H') - lesson.heureDebut|date('H')}}h</p>
-                                        </div>
-                                        <div class="place">
-                                            <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
-                                        </div>
-
-                                        <div class="Block-lesson-Btn">
-                                            {%if app.user not in lesson.participants %}
-                                                {% if not app.user %}
-                                                    <button class="btnLesson">
-                                                        <a  href="{{path('app_login')}}">S'inscrire</a>
-                                                    </button>
-                                                {% elseif app.user%}
-                                                    <button class="btnLesson">
-                                                        <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                                                    </button class="btnLesson">
-                                                {% endif %}
-                                            {%endif%}
-
-                                            {%if (app.user in lesson.participants) %}
-                                                <button class="btnLesson" >
-                                                    <a href="{{path('desist', {'lesson': lesson.id})}}">Se désinscrire</a>
-                                                </button>
-                                            {%endif%}
-                                        </div>
-                                    </div>
-                                {% endif %}
-                            {% endfor %}
-                        </section>
-                    </td>
-                    <td>
-                        Rien
-                    </td>
-                    <td>
-                        Rien
-                    </td>
-                </tr>
-            </tbody>
-        </table>#}
+        <div id="calendrier"></div>
     </div>
+
     {% include 'Footer.html.twig' %}
 {% endblock %}
 

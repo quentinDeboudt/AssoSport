@@ -2,6 +2,14 @@
 
 {% block title %}Reservation{% endblock %}
 
+{% block javascripts %}
+    <script>
+
+
+    </script>
+{% endblock %}
+
+
 {% block body %}
     <!-- ##########_First bloc Reservation_########## -->
     <div id="block-image-reservation">
@@ -9,6 +17,7 @@
         <h2 id="mes">Mes</h2>
         <h2 id="reservation">Réservation...</h2>
     </div>
+
 
     <!-- ##########_Second bloc Reservation_########## -->
     <section>
@@ -37,6 +46,5 @@
             </div>
         {% endfor %}
     </section>
-
     {% include 'Footer.html.twig' %}
 {% endblock %}

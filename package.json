@@ -27,6 +27,7 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@headlessui/react": "^1.7.4",
         "fullcalendar": "^5.11.3",
         "prop-types": "^15.8.1",
         "react": "^18.0",
