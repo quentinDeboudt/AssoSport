@@ -27,19 +27,22 @@
                     end: 'dayGridMonth,timeGridWeek'
                 },
                 eventClick: function (info) {
+                    //get object Json => lesson:
                     let obj1 = JSON.stringify(info.event.extendedProps);
 
                     let positionDebutPlace = obj1.search("place") + 7;
                     let positionDebutCoach = obj1.search("coach") + 8;
                     let positionDebutLocation = obj1.search("location") + 11;
-                    let positionDebutState = obj1.search("state") + 8;
                     let positionDebutParticipants = obj1.search("resaParticipants") + 18;
+                    let positionDebutState = obj1.search("state") + 8;
+                    let positionDebutUser = obj1.search("UserIsParticipant") + 19;
 
                     let positionFinPlace = (obj1.search("coach") - positionDebutPlace - 2);
                     let positionFinCoach = (obj1.search("location") - positionDebutCoach - 3);
                     let positionFinLocation = (obj1.search("resaParticipants") - positionDebutLocation - 3);
                     let positionFinParticipants = (obj1.search("state") - positionDebutParticipants - 2);
-                    let positionFinState = 15;
+                    let positionFinState = (obj1.search("UserIsParticipant") - positionDebutState - 3);
+                    let positionFinUser = 5;
 
                     document.querySelector('#modal-header').innerHTML = JSON.stringify(info.event.start).substr(12, 8) + " - " + JSON.stringify(info.event.end).substr(12, 8);
                     document.querySelector('#sport').innerHTML = info.event.title;
@@ -49,6 +52,21 @@
                     document.querySelector('#participants').innerHTML = obj1.substr(positionDebutParticipants,positionFinParticipants);//participants
                     document.querySelector('#state').innerHTML = obj1.substr(positionDebutState,positionFinState);//state
 
+                    //get value Bool => User is registered:
+                    let UserParticipants = obj1.substr(positionDebutUser,positionFinUser);
+
+                    //verify User is registered:
+                    if (UserParticipants.localeCompare("false")){
+                        document.querySelector('#btn-inscrire').innerHTML = "ce désinscrire";
+                        document.querySelector('#btn-inscrire').style.background = 'red';
+                        document.querySelector('#btn-inscrire').style.color = 'white';
+
+                    }else {
+                        document.querySelector('#btn-inscrire').innerHTML = "s'inscrire";
+                        document.querySelector('#btn-inscrire').style.background = '#55af55';
+                        document.querySelector('#btn-inscrire').style.color = 'black';
+
+                    }
                     console.log(obj1);
 
 
@@ -64,19 +82,6 @@
             })
             calendar.render()
         }
-
-        // Get the modal
-        let modal = document.getElementById("modal");
-
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
-        }
-
-
-
     </script>
     {{ encore_entry_script_tags('app') }}
 {% endblock %}
@@ -117,15 +122,13 @@
                         <div><p id="sport">Sport</p></div>
                     </div>
                     <div class="container container3">
-
                         <div><p id="state">0</p></div>
+
                         <button id="btn-inscrire" type="button" >S'inscrire</button>
 
                         {#
                         {%if app.user not in lesson.participants %}
-                            <button>
-                                <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a>
-                            </button>
+                            <button> <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a> </button>
                         {%endif%}
 
                         {%if (app.user in lesson.participants) %}

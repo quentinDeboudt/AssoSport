@@ -7,16 +7,19 @@ use App\Entity\User;
 use App\Repository\LessonRepository;
 use App\Repository\StateRepository;
 use ContainerRiS27O4\getSecurity_Validator_UserPasswordService;
+use phpDocumentor\Reflection\Types\Boolean;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
 use function MongoDB\BSON\toJSON;
 
 
 class PlanningController extends AbstractController
 {
     #[Route('/planning', name: 'app_planning')]
-    public function index( LessonRepository $lesson , StateRepository $stateRepository): Response
+    public function index( LessonRepository $lesson , UserInterface $user): Response
     {
 
         $events = $lesson->findAll();
@@ -24,6 +27,15 @@ class PlanningController extends AbstractController
         $lessons = [];
 
         foreach ($events as $event){
+
+            //get the table of participants of the lessson :
+            $table = $event->getParticipants()->toArray();
+
+            //verify user is participants
+            $value = false;
+            $response = in_array($user, $table, $value=true);
+            $idLesson = $event->getId();
+
             $lessons[] = [
                 'title' => $event->getName(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
@@ -34,6 +46,7 @@ class PlanningController extends AbstractController
                 'location' => $event->getLocation()->getName(),
                 'resaParticipants' => $event->getParticipants()->count(),
                 'state' => $event->getState()->getWording(),
+                'UserIsParticipant'=> $response,
 
                 'allDay' => false,
                 'backgroundColor' => $event->getBackgroundColor(),
@@ -41,6 +54,7 @@ class PlanningController extends AbstractController
                 'textColor' => $event->getTextColor(),
                 'id' => $event->getId(),
             ];
+
         }
         $data = json_encode($lessons);
 
@@ -48,7 +62,7 @@ class PlanningController extends AbstractController
 
 
 
-        return $this->render('planning/index.html.twig', compact('data'));
+        return $this->render('planning/index.html.twig', compact('data', 'idLesson'));
 
     }
 
