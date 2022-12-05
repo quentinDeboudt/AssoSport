@@ -17,8 +17,10 @@ class LessonController extends AbstractController
     #[Route('/', name: 'app_lesson_index', methods: ['GET'])]
     public function index(LessonRepository $lessonRepository): Response
     {
+        dump($lessonRepository->findAll());
         return $this->render('lesson/index.html.twig', [
             'lessons' => $lessonRepository->findAll(),
+
         ]);
     }
 
@@ -62,7 +64,7 @@ class LessonController extends AbstractController
     /*************************** Modify lesson ***************************/
     /*********************************************************************/
     #[Route('/{id}/edit', name: 'app_lesson_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
+    public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository, StateRepository $stateRepository): Response
     {
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);

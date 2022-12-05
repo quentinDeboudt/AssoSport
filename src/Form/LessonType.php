@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Coach;
 use App\Entity\Lesson;
 use App\Entity\Location;
+use App\Entity\Sport;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -17,7 +18,11 @@ class LessonType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Name')
+            ->add('Name', EntityType::class,[
+                'class' => Sport::class,
+                'choice_label' => 'name',
+
+            ])
             ->add('Start', DateTimeType::class, [
                 'date_widget' => 'single_text',
                 'time_widget' => 'single_text',
@@ -140,13 +145,10 @@ class LessonType extends AbstractType
             ->add('Location', EntityType::class, [
                 'class' => Location::class,
                 'choice_label' => 'name',
-
-
             ])
             ->add('Coach' ,EntityType::class, [
                 'class' => Coach::class,
                 'choice_label' => 'name',
-
             ])
 
         ;

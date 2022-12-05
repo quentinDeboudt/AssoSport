@@ -7,7 +7,6 @@
      {{ encore_entry_link_tags('app') }}
 {% endblock %}
 
-
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"> </script>
     <script>
@@ -28,49 +27,42 @@
                 },
                 eventClick: function (info) {
                     //get object Json => lesson:
-                    let obj1 = JSON.stringify(info.event.extendedProps);
+                    let Lesson = info.event.extendedProps;
 
-                    let positionDebutPlace = obj1.search("place") + 7;
-                    let positionDebutCoach = obj1.search("coach") + 8;
-                    let positionDebutLocation = obj1.search("location") + 11;
-                    let positionDebutParticipants = obj1.search("resaParticipants") + 18;
-                    let positionDebutState = obj1.search("state") + 8;
-                    let positionDebutUser = obj1.search("UserIsParticipant") + 19;
-
-                    let positionFinPlace = (obj1.search("coach") - positionDebutPlace - 2);
-                    let positionFinCoach = (obj1.search("location") - positionDebutCoach - 3);
-                    let positionFinLocation = (obj1.search("resaParticipants") - positionDebutLocation - 3);
-                    let positionFinParticipants = (obj1.search("state") - positionDebutParticipants - 2);
-                    let positionFinState = (obj1.search("UserIsParticipant") - positionDebutState - 3);
-                    let positionFinUser = 5;
+                    console.log(Lesson);
 
                     document.querySelector('#modal-header').innerHTML = JSON.stringify(info.event.start).substr(12, 8) + " - " + JSON.stringify(info.event.end).substr(12, 8);
                     document.querySelector('#sport').innerHTML = info.event.title;
-                    document.querySelector('#place').innerHTML = obj1.substr(positionDebutPlace,positionFinPlace);//place
-                    document.querySelector('#coach').innerHTML = obj1.substr(positionDebutCoach,positionFinCoach);//coach
-                    document.querySelector('#lieu').innerHTML = obj1.substr(positionDebutLocation,positionFinLocation);//location
-                    document.querySelector('#participants').innerHTML = obj1.substr(positionDebutParticipants,positionFinParticipants);//participants
-                    document.querySelector('#state').innerHTML = obj1.substr(positionDebutState,positionFinState);//state
+                    document.querySelector('#place').innerHTML = Lesson.place;
+                    document.querySelector('#coach').innerHTML = Lesson.coach;
+                    document.querySelector('#lieu').innerHTML = Lesson.location;
+                    document.querySelector('#participants').innerHTML = Lesson.resaParticipants;
+                    document.querySelector('#state').innerHTML = Lesson.state;
 
-                    //get value Bool => User is registered:
-                    let UserParticipants = obj1.substr(positionDebutUser,positionFinUser);
-
-                    //verify User is registered:
-                    if (UserParticipants.localeCompare("false")){
-                        document.querySelector('#btn-inscrire').innerHTML = "ce désinscrire";
-                        document.querySelector('#btn-inscrire').style.background = 'red';
-                        document.querySelector('#btn-inscrire').style.color = 'white';
-
+                    //******* Verify User Is Registered *********\\
+                    if (Lesson.UserIsParticipant){
+                        document.querySelector('#btn-inscrire').style.display = "none";
+                        document.querySelector('#btn-desinscrire').style.display = "block";
                     }else {
-                        document.querySelector('#btn-inscrire').innerHTML = "s'inscrire";
-                        document.querySelector('#btn-inscrire').style.background = '#55af55';
-                        document.querySelector('#btn-inscrire').style.color = 'black';
-
+                        document.querySelector('#btn-inscrire').style.display = "block";
+                        document.querySelector('#btn-desinscrire').style.display = "none";
                     }
-                    console.log(obj1);
+
+                    //******* Verify lesson Is closed/open *********\\
+                    if(JSON.stringify(Lesson.state) === JSON.stringify('Activity closed')   ){
+                        document.querySelector('#btn-inscrire').disabled = true;
+                        document.querySelector('#btn-inscrire').style.backgroundColor = 'grey';
+                        document.querySelector('#btn-inscrire').style.cursor = 'not-allowed';
+                        document.querySelector('#btn-inscrire').title = 'Plus de place!';
+                    }else{
+                        document.querySelector('#btn-inscrire').disabled = false;
+                        document.querySelector('#btn-inscrire').style.backgroundColor = '#55af55';
+                        document.querySelector('#btn-inscrire').style.cursor = 'default';
+                    }
 
 
-
+                    //get id for lesson:
+                    id = info.event.id;
 
                     // When the user clicks the button, open the modal
                     let modal = document.getElementById("modal");
@@ -81,6 +73,19 @@
                 eventResizableFromStart: true,
             })
             calendar.render()
+        }
+
+
+        //####################### Function OnClick Btn############################\\
+
+        //****** function inscription ******\\
+        function FunctionInscription(){
+            window.location.href = "join/" + id;
+        }
+
+        //****** function unsubscription ******\\
+        function FunctionUnsubscription(){
+            window.location.href = "desist/" + id;
         }
     </script>
     {{ encore_entry_script_tags('app') }}
@@ -111,32 +116,20 @@
                 <div id="modal-body">
                     <div class="container">
                         <div id="places">
-                            <p id="participants">0</p>
+                            <p id="participants"></p>
                             <p>/</p>
-                            <p id="place">0</p>
+                            <p id="place"></p>
                         </div>
-                        <p id="coach">0</p>
-                        <p id="lieu">0</p>
+                        <p id="coach"></p>
+                        <p id="lieu"></p>
                     </div>
                     <div class="container">
-                        <div><p id="sport">Sport</p></div>
+                        <div><p id="sport"></p></div>
                     </div>
                     <div class="container container3">
-                        <div><p id="state">0</p></div>
-
-                        <button id="btn-inscrire" type="button" >S'inscrire</button>
-
-                        {#
-                        {%if app.user not in lesson.participants %}
-                            <button> <a href="{{path('join', {'lesson': lesson.id})}}">S'inscrire</a> </button>
-                        {%endif%}
-
-                        {%if (app.user in lesson.participants) %}
-                            <button>
-                                <a href="{{path('desist', {'lesson': lesson.id})}}">Se désister</a>
-                            </button>
-                        {%endif%} #}
-
+                        <div><p id="state"></p></div>
+                        <button id="btn-inscrire" onclick="FunctionInscription()" type="button" >s'inscrire</button>
+                        <button id="btn-desinscrire" onclick="FunctionUnsubscription()" type="button" >se désinscrire</button>
                     </div>
                 </div>
             </div>

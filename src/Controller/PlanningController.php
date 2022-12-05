@@ -6,9 +6,6 @@ use App\Entity\Lesson;
 use App\Entity\User;
 use App\Repository\LessonRepository;
 use App\Repository\StateRepository;
-use ContainerRiS27O4\getSecurity_Validator_UserPasswordService;
-use phpDocumentor\Reflection\Types\Boolean;
-use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,25 +16,25 @@ use function MongoDB\BSON\toJSON;
 class PlanningController extends AbstractController
 {
     #[Route('/planning', name: 'app_planning')]
-    public function index( LessonRepository $lesson , UserInterface $user): Response
+    public function index(LessonRepository $lessonRepository, UserInterface $user): Response
     {
 
-        $events = $lesson->findAll();
+        $events = $lessonRepository->findAll();
 
+        dump($events);
         $lessons = [];
 
         foreach ($events as $event){
 
             //get the table of participants of the lessson :
             $table = $event->getParticipants()->toArray();
+            $response = in_array($user, $table ,true);
 
-            //verify user is participants
-            $value = false;
-            $response = in_array($user, $table, $value=true);
-            $idLesson = $event->getId();
+
+
 
             $lessons[] = [
-                'title' => $event->getName(),
+                'title' => $event->getName()->getName(),
                 'start' => $event->getStart()->format('Y-m-d H:i:s'),
                 'end' => $event->getEnd()->format('Y-m-d H:i:s'),
 
@@ -54,15 +51,12 @@ class PlanningController extends AbstractController
                 'textColor' => $event->getTextColor(),
                 'id' => $event->getId(),
             ];
+            dump($lessons);
 
         }
         $data = json_encode($lessons);
 
-
-
-
-
-        return $this->render('planning/index.html.twig', compact('data', 'idLesson'));
+        return $this->render('planning/index.html.twig', compact('data'));
 
     }
 
@@ -84,18 +78,14 @@ class PlanningController extends AbstractController
 
         $lesson->addParticipant($currentParticipant);
 
-
-
-        if ( count($lesson->getParticipants()) == $lesson->getNbPlace()){
-            $stateClosed = $stateRepository->findOneBy(['wording' => 'Activity closed']);
+        if ( count($lesson->getParticipants()) >= $lesson->getNbPlace()){
+            $stateClosed = $stateRepository->findOneBy(array('wording' => 'Activity closed'));
             $lesson->setState($stateClosed);
         }
-
 
         $lessonRepository->save($lesson, true);
         $this->addFlash("success","Inscription validée.");
         return $this->redirectToRoute('app_planning');
-
     }
 
 
@@ -111,8 +101,8 @@ class PlanningController extends AbstractController
         $currentParticipant = $this->getUser();
 
         $lesson->removeParticipant($currentParticipant);
-        if (count($lesson->getParticipants()) < $lesson->getNbPlace()){
-            $stateOpened = $stateRepository->findOneBy(['wording' => 'Activity opened']);
+        if (count($lesson->getParticipants()) <= $lesson->getNbPlace()){
+            $stateOpened = $stateRepository->findOneBy(array('wording' => 'Activity opened'));
             $lesson->setState($stateOpened);
         }
 

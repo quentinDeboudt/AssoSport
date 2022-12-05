@@ -16,8 +16,8 @@ class Lesson
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Name = null;
+    #[ORM\ManyToOne(targetEntity: Sport::class,inversedBy: 'lessons')]
+    private ?Sport $Name = null;
 
     #[ORM\Column]
     private ?int $NbPlace = null;
@@ -53,7 +53,6 @@ class Lesson
     #[ORM\Column]
     private ?bool $all_day = null;
 
-
     public function __construct()
     {
         $this->Participants = new ArrayCollection();
@@ -65,12 +64,12 @@ class Lesson
         return $this->id;
     }
 
-    public function getName(): ?string
+    public function getName(): ?Sport
     {
         return $this->Name;
     }
 
-    public function setName(string $Name): self
+    public function setName(?Sport $Name): self
     {
         $this->Name = $Name;
 
@@ -243,4 +242,6 @@ class Lesson
 
         return $this;
     }
+
+
 }

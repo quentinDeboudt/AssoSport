@@ -21,9 +21,13 @@ class Coach
     #[ORM\OneToMany(mappedBy: 'Coach', targetEntity: Lesson::class)]
     private Collection $lessons;
 
+    #[ORM\ManyToMany(targetEntity: Sport::class, inversedBy: 'coaches')]
+    private Collection $sports;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
+        $this->sports = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,5 +79,29 @@ class Coach
 
     public function __toString(){
         return $this->getName();
+    }
+
+    /**
+     * @return Collection<int, Sport>
+     */
+    public function getSports(): Collection
+    {
+        return $this->sports;
+    }
+
+    public function addSport(Sport $sport): self
+    {
+        if (!$this->sports->contains($sport)) {
+            $this->sports->add($sport);
+        }
+
+        return $this;
+    }
+
+    public function removeSport(Sport $sport): self
+    {
+        $this->sports->removeElement($sport);
+
+        return $this;
     }
 }

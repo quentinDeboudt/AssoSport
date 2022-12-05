@@ -5,7 +5,7 @@
 {% block body %}
     <h1>list des leçons</h1>
 
-    <table class="table">
+    <table class="table-info">
         <thead>
             <tr>
                 <th>Id</th>
@@ -26,7 +26,7 @@
         {% for lesson in lessons %}
             <tr>
                 <td>{{ lesson.id }}</td>
-                <td>{{ lesson.Name }}</td>
+                <td>{{ lesson.Name.Name }}</td>
                 <td>{{ lesson.start ? lesson.start|date('y-m-d H:i:s') : '' }}</td>
                 <td>{{ lesson.end ? lesson.end|date('y-m-d H:i:s') : '' }}</td>
                 <td>{{ lesson.NbPlace }}</td>
@@ -37,8 +37,8 @@
                 <td>{{ lesson.coach }}</td>
                 <td>{{ lesson.location }}</td>
                 <td>
-                    <a href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
-                    <a href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
+                    <a class="btn-action" href="{{ path('app_lesson_show', {'id': lesson.id}) }}">show</a>
+                    <a class="btn-action" href="{{ path('app_lesson_edit', {'id': lesson.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

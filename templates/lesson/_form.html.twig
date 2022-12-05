@@ -1,5 +1,7 @@
 {{ form_start(form) }}
 
+<div class="container-edit">
+
     {{ form_row(form.Name) }}
     {{ form_row(form.Start) }}
     {{ form_row(form.end) }}
@@ -10,6 +12,6 @@
     {{ form_row(form.background_color) }}
     {{ form_row(form.border_color) }}
     {{ form_row(form.text_color) }}
-
-    <button class="btn">{{ button_label|default('Save') }}</button>
+</div>
+    <button  class="btn-show-save" >{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

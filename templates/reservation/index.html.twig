@@ -25,14 +25,13 @@
             <div id="Block-lesson-reservation">
                 <div id="Block-lesson-reservation-Date">
                     <p>
-                        {{ lesson.heureDebut | date('H') }} h {{ lesson.heureDebut | date('i')}}
+                        {{ lesson.start | date('H') }} h {{ lesson.start | date('i')}}
                         -
-                        {{ lesson.heureFin | date('H') }} h {{ lesson.heureFin | date('i') }}
+                        {{ lesson.end | date('H') }} h {{ lesson.end | date('i') }}
                     </p>
-                    <p>{{ lesson.Day }}</p>
                 </div>
 
-                <p id="Block-lesson-reservation-name" style="color:{{ lesson.backgroundColor }};">{{ lesson.Name }}</p>
+                <p id="Block-lesson-reservation-name" style="color:{{ lesson.backgroundColor }};">{{ lesson.Name.Name }}</p>
 
                 <div id="Block-lesson-reservation-info">
                     <div>
