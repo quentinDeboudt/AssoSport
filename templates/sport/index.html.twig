@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}list des Sport{% endblock %}
+
+{% block body %}
+    <h1>list des Sport</h1>
+
+    <table class="table-info">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sport in lstSport %}
+            <tr>
+                <td>{{ sport.id }}</td>
+                <td>{{ sport.Name }}</td>
+                <td>
+                    <a class="btn-action" href="{{ path('app_sport_show', {'id': sport.id}) }}">show</a>
+                    <a class="btn-action" href="{{ path('app_sport_edit', {'id': sport.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn-add" href="{{ path('app_sport_new') }}">Ajouter un sport</a>
+{% endblock %}

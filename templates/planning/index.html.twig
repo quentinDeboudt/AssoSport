@@ -21,9 +21,9 @@
                 locale: 'fr',
                 timeZone: 'Europe/Paris',
                 headerToolbar: {
-                    start: 'prev,next',
-                    center: 'title,today',
-                    end: 'dayGridMonth,timeGridWeek'
+                    start: 'prev',
+                    center: 'today dayGridMonth,timeGridWeek',
+                    end: 'next'
                 },
                 eventClick: function (info) {
                     //get object Json => lesson:
@@ -94,7 +94,7 @@
 
 
 {% block body %}
-    <div id="AllPage-calendar">
+    <div id="AllPage-calendar" >
 
         <!-- ##########_First bloc Planning_##########-->
         <div id="block-image-planning">
@@ -104,7 +104,7 @@
         </div>
 
         {###################### test de react: ######################}
-        <div {{ react_component('MyComponent', {'fullName': 'QuQU'}) }} style="color: #FFFFFF"></div>
+{#<div {{ react_component('MyComponent', {'fullName': 'QuQU'}) }} style="color: #FFFFFF"></div>#}
 
         <!--###################################### Modal ######################################-->
         <div id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,10 +136,8 @@
         </div>
 
         <!--#########################  Calendar ############################"-->
-        <a href="{{path('app_lesson_new')}}"> <h2 style="width:fit-content; color: white">Ajouter une leçon</h2></a>
-
         <div id="calendrier"></div>
-    </div>
+        </div>
 
     {% include 'Footer.html.twig' %}
 {% endblock %}

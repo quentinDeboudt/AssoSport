@@ -40,7 +40,7 @@ class LessonController extends AbstractController
             $lesson->setState($state);
             $lessonRepository->save($lesson, true);
 
-            return $this->redirectToRoute('app_lesson_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_planning', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('lesson/new.html.twig', [

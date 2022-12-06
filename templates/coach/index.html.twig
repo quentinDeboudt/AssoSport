@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CoachController!{% endblock %}
+
+{% block body %}
+    <h1>list des Coach:</h1>
+
+    <table class="table-info">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>sport</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for coach in lstCoach %}
+            <tr>
+                <td>{{ coach.id }}</td>
+                <td>{{ coach.Name }}</td>
+                <td>{{ coach.Name }}</td>
+
+                <td>
+                    <a class="btn-action" href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>
+                    <a class="btn-action" href="{{ path('app_coach_edit', {'id': coach.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn-add" href="{{ path('app_coach_new') }}">Ajouter un/une Coach</a>
+
+
+{% endblock %}

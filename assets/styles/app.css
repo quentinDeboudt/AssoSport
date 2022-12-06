@@ -5,7 +5,7 @@
 body {
     background-color: #272727;
     padding: 0;
-    margin: 0;
+    margin-top: 70px;
 }
 .background-color-black{
     background-color: black;
@@ -33,6 +33,10 @@ a{
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    position: fixed;
+    width: 100%;
+    z-index: 20;
+    top: 0;
 }
 #AllLink{
     display: flex;
@@ -72,22 +76,86 @@ a{
 #img-profil{
     width: 50px;
     height: 50px;
+    margin-right: 20px;
     border-radius: 100%;
+    z-index: 23;
 }
-#BlockProfil{
-    width: 200px;
+
+/********************* Modal Account ***************************/
+#modalAccount{
+    display: none;/* Hidden by default */
+    position: fixed;
+    right: 30px;
+    top: 65px;
+    border: rgba(39, 39, 39, 0.51) solid .5px;
+    z-index: 21;
+    background-color: #FFFFFF;
+
+    flex-direction: column;
+    color: black;
+    width: fit-content;
+    padding: 10px;
+    border-radius: 20px;
+}
+#modalAccount #closeAccountModal{
+    cursor: pointer;
+    position: absolute;
+    font-size: 35px;
+    right: 10px;
+    top: -10px;
+}
+#modalAccount #InformationProfile {
     display: flex;
-    border: #FFFFFF solid 2px;
-    border-radius: 50px;
-    margin-right: 10px;
+    flex-direction: column;
+    align-items: center;
 }
-#BlockProfil div{
-    font-size: 11px;
+
+#modalAccount #btn-modifierProfile{
+    border: rgba(39, 39, 39, 0.56) solid 0.5px;
+    border-radius: 20px;
+    padding: 5px;
+}
+#modalAccount #btn-modifierProfile:hover{
+    background-color: rgba(170, 170, 170, 0.2);
+}
+
+#imgAccountProfile{
+    width: 90px;
+}
+#modalAccount #link-admin{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    border-top: rgba(39, 39, 39, 0.26) solid .5px;
+    border-bottom: rgba(39, 39, 39, 0.26) solid .5px;
+}
+#modalAccount #link-admin a{
+    text-decoration: none;
+    color: #272727;
+    border: #272727 solid 0.5px;
+    border-radius: 20px;
+    width: fit-content;
+    padding: 5px;
+    margin: 5px;
+}
+#link-admin a:hover{
+    background-color: rgba(153, 153, 153, 0.24);
 }
 #logout{
-    margin-left: 4px;
-    color: red!important;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #272727;
+    border: #272727 solid .5px;
+    border-radius: 5px;
+    padding: 10px;
 }
+#logout:hover{
+    background-color: rgba(153, 153, 153, 0.24);
+}
+
 
 /************************* Footer **************************/
 /***********************************************************/
@@ -371,8 +439,10 @@ background-color: #D9D9D9 ;
 /************************* calendar **************************/
 /****************************************************************/
 #calendrier{
-    width: 80%;
-    margin: auto;
+    margin-top: 50px;
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
 }
 /*** block Calendrier sans le header ***/
 .fc-view-harness{
@@ -388,14 +458,29 @@ background-color: #D9D9D9 ;
 .fc-theme-standard td, .fc-theme-standard th {
     border: 1px solid black;
 }
-/*** texte jours et heures ***/
+/*** tout le texte dans calendrier ***/
 .fc .fc-scroller-harness {
-
+    color: black;
 }
-/*** title ***/
-.fc-toolbar-chunk h2{
-    color: #FFFFFF;
+.fc-toolbar-chunk .fc-button{
+    color: black;
+    font-size: 20px;
+    background-color: #FFFFFF;
 }
+.fc-toolbar-chunk .fc-button:hover{
+    background-color: #ababab;
+    color: black;
+}
+.fc-toolbar-chunk .fc-button:disabled{
+    color: black;
+    background-color: #FFFFFF;
+}
+/** jours **/
+.fc-col-header-cell-cushion{
+    color: black;
+    font-family: "Times New Roman", Times, serif;
+}
+    /*** title ***/
 .fc th {
     font-size: 30px;
 }
@@ -437,7 +522,7 @@ background-color: #D9D9D9 ;
 /* The Close Button */
 #close {
     position: absolute;
-    top: 30px;
+    top: 80px;
     right: 30px;
     font-family: fantasy;
     z-index: 6;
@@ -562,7 +647,7 @@ background-color: #D9D9D9 ;
 
 #Block-lesson-reservation{
     border-radius: 40px;
-    margin: 40px;
+    margin: 15px 10% 0 10% ;
     background-color: #dfdfdf;
     font-size: 30px;
 }
@@ -633,14 +718,8 @@ background-color: #D9D9D9 ;
     margin-bottom: 20px;
 }
 #Block-new-Lesson{
-    background-color: #999999;
     width: fit-content;
-    padding: 20px;
-    border: #272727 solid 1px;
-    border-radius: 20px;
     margin: auto;
-    display: flex;
-    flex-direction: column;
 }
 #Block-new-Lesson input {
     margin-bottom: 10px;
@@ -710,6 +789,16 @@ background-color: #D9D9D9 ;
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+.btn-add{
+    text-decoration: none;
+    background-color: #55af55;
+    border: #FFFFFF solid 1px;
+    color: #FFFFFF;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 5px;
 }
 
 .container-edit{

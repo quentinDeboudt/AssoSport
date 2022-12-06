@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coach{% endblock %}
+
+{% block body %}
+    <h1 id="title-new-lesson">créer un/une coach</h1>
+
+    <div id="Block-new-coach">
+        {{ include('coach/_form.html.twig') }}
+        <a href="{{ path('app_coach') }}">Retour</a>
+    </div>
+
+
+{% endblock %}

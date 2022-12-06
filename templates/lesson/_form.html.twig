@@ -12,6 +12,10 @@
     {{ form_row(form.background_color) }}
     {{ form_row(form.border_color) }}
     {{ form_row(form.text_color) }}
-</div>
+
     <button  class="btn-show-save" >{{ button_label|default('Save') }}</button>
+    <a class="btn-show-retour" href="{{ path('app_planning') }}">Retour</a>
+</div>
+
+
 {{ form_end(form) }}

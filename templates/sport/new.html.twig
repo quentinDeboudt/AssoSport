@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Coach{% endblock %}
+
+{% block body %}
+    <h1 id="title-new-sport">créer un nouveau sport</h1>
+
+    <div id="container-btn-show">
+        {{ include('sport/_form.html.twig') }}
+        <a href="{{ path('app_sport') }}">Retour</a>
+    </div>
+{% endblock %}
