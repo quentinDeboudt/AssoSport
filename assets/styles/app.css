@@ -47,8 +47,8 @@ a{
 #nav-bar #AllLink li{
     list-style:none;
     margin: 10px;
-    padding: 10px;
-    font-size: 25px;
+    padding: 5px;
+    font-size: 30px;
     border: #FFFFFF solid 2px;
     border-radius: 20px;
 }
@@ -59,23 +59,18 @@ a{
     color: #FFFFFF;
     text-decoration: none;
 }
-#login{
-    font-size: 30px;
-}
-#login:hover{
-    color: green;
-}
 
 /********* Title in nav **********/
 #title{
-    font-size: 20px;
+    font-size: 34px;
+    margin-left: 20px;
     font-family: Papyrus, fantasy;
 }
 
 /********* Profil in nav **********/
 #img-profil{
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     margin-right: 20px;
     border-radius: 100%;
     z-index: 23;
@@ -217,21 +212,21 @@ background-color: #D9D9D9 ;
     position: absolute;
     top: 0;
     left: 16px;
-    font-size: 120px;
+    font-size: 140px;
     color: #FFFFFF;
     text-shadow: black 0 0 20px;
 }
  #Block-image #Multisport{
      position: absolute;
-     top: 40px;
-     left: 16px;
-     font-size: 100px;
+     top: 120px;
+     left: 9px;
+     font-size: 130px;
      color: black;
      text-shadow: white 4px 4px 0;
  }
 #div-btn-rejoindre {
     position: absolute;
-    top: 450px;
+    top: 500px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -263,14 +258,14 @@ background-color: #D9D9D9 ;
 }
 #Image-home-sport-gim{
     margin: 60px;
-    width: 450px;
+    width: 30rem;
     border-radius: 100%;
     border: #FFFFFF solid 3px;
 }
 #Image-home-sport-acrobat{
     position: relative;
     top: -200px;
-    left: 350px;
+    left: 340px;
     width: 200px;
     border-radius: 100%;
     border: #FFFFFF solid 3px;
@@ -278,24 +273,25 @@ background-color: #D9D9D9 ;
 #Title #STUDIO{
     width: fit-content;
     position: relative;
-    right: 85px;
+    left: 56px;
     top: 50px;
     margin: 0;
     color: #D9D9D9 ;
-    font-size: 89px;
+    font-size: 100px;
     font-family: Arial, cursive ;
 }
 #Title #Multisport{
     width: fit-content;
     position: relative;
-    left: 92px;
-    top: 7px;
+    left: 179px;
+    top: -25px;
     margin: 0;
     padding: 0;
     font-size: 110px;
     font-family: Arial, cursive ;
 }
 #Sudio-Multisport article{
+    width: 50rem;
     margin: 20px;
     font-size: 25px;
     font-family: "Segoe Print";
