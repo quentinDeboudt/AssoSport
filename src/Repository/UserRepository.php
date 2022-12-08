@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Lesson;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -54,5 +55,30 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $user->setPassword($newHashedPassword);
 
         $this->save($user, true);
+    }
+
+    /**
+    * @return User[] Returns an array of Participant objects
+    */
+    public function findUserLesson(): array
+    {
+        // Realisation de la requete
+        $queryBuilder = $this->createQueryBuilder('u');
+        $queryBuilder->addSelect('l.id','sp.name', 'l.nb_place', 'c.name' , 'lo.name');
+
+        // Jointures
+        $queryBuilder->leftJoin('lesson_user', 'lu', 'ON', 'u.id = lu.user_id');
+        $queryBuilder->leftJoin(`lesson` , 'l', 'ON', 'l.id = lu.lesson_id');
+        $queryBuilder->leftJoin(`coach` , 'c', 'ON', 'c.id = l.coach_id');
+        $queryBuilder->leftJoin(`location` , 'lo', 'ON', 'lo.id = l.location_id');
+        $queryBuilder->leftJoin(`sport` , 'sp', 'ON', 'sp.id = l.id');
+        $queryBuilder->addSelect('s', 'p', 'o', 'pl', 'c');
+        $queryBuilder->where('u.id = 19');
+        //$queryBuilder->where('u = ?21');
+
+        //Récuperation des données en BDD suite à la requête
+        $query = $queryBuilder->getQuery();
+
+        return $query->getResult();
     }
 }
