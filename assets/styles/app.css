@@ -75,6 +75,13 @@ a{
     border-radius: 100%;
     z-index: 23;
 }
+/********* if not loged => link login **********/
+#link-connection{
+    border: #FFFFFF solid 1px;
+    border-radius: 20px;
+    padding: 5px;
+    margin-right: 20px;
+}
 
 /********************* Modal Account ***************************/
 #modalAccount{
@@ -416,18 +423,19 @@ background-color: #D9D9D9 ;
     width: 100%;
 }
 #block-image-planning #motive {
+    font-weight: 500;
     margin: 0;
     position: absolute;
     top: 60px;
     left: 16px;
-    font-size: 120px;
+    font-size: 140px;
     color: black;
     text-shadow: white 4px 4px 0;
 }
 #block-image-planning #go{
     position: absolute;
-    top: 100px;
-    left: 16px;
+    top: 13rem;
+    left: 20px;
     font-size: 100px;
     font-family: Marlet, Papyrus, fantasy;
     color: black;

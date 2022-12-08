@@ -10,9 +10,10 @@
 {% block javascripts %}
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js" integrity="sha256-7PzqE1MyWa/IV5vZumk1CVO6OQbaJE4ns7vmxuUP/7g=" crossorigin="anonymous"> </script>
     <script>
+        let id;
         window.onload = () => {
-            let calendarElt = document.querySelector("#calendrier")
-            let calendar = new FullCalendar.Calendar(calendarElt, {
+            const calendarElt = document.querySelector("#calendrier")
+            const calendar = new FullCalendar.Calendar(calendarElt, {
                 height: 820,
                 initialView: 'timeGridWeek',
                 hiddenDays: [0], //Cacher le dimanche 0=premier jour(dimanche)
@@ -27,9 +28,9 @@
                 },
                 eventClick: function (info) {
                     //get object Json => lesson:
-                    let Lesson = info.event.extendedProps;
-
-                    console.log(Lesson);
+                    const Lesson = info.event.extendedProps;
+                    const btnInscrire = document.querySelector('#btn-inscrire');
+                    const btnDesinscrire = document.querySelector('#btn-desinscrire');
 
                     document.querySelector('#modal-header').innerHTML = JSON.stringify(info.event.start).substr(12, 8) + " - " + JSON.stringify(info.event.end).substr(12, 8);
                     document.querySelector('#sport').innerHTML = info.event.title;
@@ -39,33 +40,33 @@
                     document.querySelector('#participants').innerHTML = Lesson.resaParticipants;
                     document.querySelector('#state').innerHTML = Lesson.state;
 
+
                     //******* Verify User Is Registered *********\\
                     if (Lesson.UserIsParticipant){
-                        document.querySelector('#btn-inscrire').style.display = "none";
-                        document.querySelector('#btn-desinscrire').style.display = "block";
+                        btnInscrire.style.display = "none";
+                        btnDesinscrire.style.display = "block";
                     }else {
-                        document.querySelector('#btn-inscrire').style.display = "block";
-                        document.querySelector('#btn-desinscrire').style.display = "none";
+                        btnInscrire.style.display = "block";
+                        btnDesinscrire.style.display = "none";
                     }
 
                     //******* Verify lesson Is closed/open *********\\
-                    if(JSON.stringify(Lesson.state) === JSON.stringify('Activity closed')   ){
-                        document.querySelector('#btn-inscrire').disabled = true;
-                        document.querySelector('#btn-inscrire').style.backgroundColor = 'grey';
-                        document.querySelector('#btn-inscrire').style.cursor = 'not-allowed';
-                        document.querySelector('#btn-inscrire').title = 'Plus de place!';
+                    if(Lesson.state === 'Activity closed' ){
+                        btnInscrire.disabled = true;
+                        btnInscrire.style.backgroundColor = 'grey';
+                        btnInscrire.style.cursor = 'not-allowed';
+                        btnInscrire.title = 'Plus de place!';
                     }else{
-                        document.querySelector('#btn-inscrire').disabled = false;
-                        document.querySelector('#btn-inscrire').style.backgroundColor = '#55af55';
-                        document.querySelector('#btn-inscrire').style.cursor = 'default';
+                        btnInscrire.disabled = false;
+                        btnInscrire.style.backgroundColor = '#55af55';
+                        btnInscrire.style.cursor = 'default';
                     }
-
 
                     //get id for lesson:
                     id = info.event.id;
 
                     // When the user clicks the button, open the modal
-                    let modal = document.getElementById("modal");
+                    const modal = document.getElementById("modal");
                     modal.style.display = "block";
                 },
                 events: {{ data|raw }},

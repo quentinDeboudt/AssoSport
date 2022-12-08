@@ -13,98 +13,80 @@
 
         {% block javascripts %}
             <script>
-
                 function openAccountModal(){
                     // When the user clicks the button, open the modal
                     let modalAccount = document.getElementById("modalAccount");
                     modalAccount.style.display = "block";
                 }
-
-
-
             </script>
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
     <body>
-
         {% block header %}
-            <script>
-                function openAccountModal(){
-                    // When the user clicks the button, open the modal
-                    let modalAccount = document.getElementById("modalAccount");
-                    modalAccount.style.transitionDuration = "2s";
-                    modalAccount.style.display = "initial";
-                }
-            </script>
 
-                <ul id="nav-bar">
+            <ul id="nav-bar">
+                <a id="title" href="{{path('app_home')}}"> <h2>AssoSport</h2></a>
 
-                    <a id="title" href="{{path('app_home')}}"> <h2>AssoSport</h2></a>
-
-
-                    <div id="AllLink">
+                <div id="AllLink">
+                    <li>
+                        <a class="link-nav-bar" href="{{path('app_home')}}" title="Accueil">Accueil</a>
+                    </li>
+                    <li>
+                        <a class="link-nav-bar" href="{{path('app_planning')}}" title="Planning">Planning</a>
+                    </li>
+                    {% if app.user%}
                         <li>
-                            <a class="link-nav-bar" href="{{path('app_home')}}" title="Accueil">Accueil</a>
+                            <a class="link-nav-bar" href="{{path('app_reservation')}}" title="Réservation">Mes Réservation</a>
                         </li>
-                        <li>
-                            <a class="link-nav-bar" href="{{path('app_planning')}}" title="Planning">Planning</a>
-                        </li>
-                        {% if app.user%}
-                            <li>
-                                <a class="link-nav-bar" href="{{path('app_reservation')}}" title="Réservation">Mes Réservation</a>
-                            </li>
-                        {% endif %}
-                    </div>
+                    {% endif %}
+                </div>
 
+                {% if app.user%}
                     <div id="account-image" >
                         <img src="{{ asset('Directory/IconProfil.png')}}" alt="profil" id="img-profil" onclick="document.getElementById('modalAccount').style.display='block'">
                     </div>
-                </ul>
+                {% else %}
+                    <div>
+                        <a id="link-connection" href="{{path('app_login')}}" title="Se_Connecter">Se Connecter</a>
+                    </div>
+                {% endif %}
+            </ul>
 
-            <div id="modalAccount">
-                <span onclick="document.getElementById('modalAccount').style.display='none'" id="closeAccountModal" title="Close Modal">×</span>
-                <div id="InformationProfile">
-                    <img src="{{ asset('Directory/IconProfil.png')}}"  alt="profil" id="imgAccountProfile">
-                    {% if app.user%}
-                        <p id="">{{app.user.firstName}} {{app.user.lastName}}</p>
-                        <p>{{ app.user.email }}</p>
-                        <button id="btn-modifierProfile">Modifier le Profile</button>
-                    {% endif %}
+            {% if app.user%}
+                <div id="modalAccount">
+
+                    <span onclick="document.getElementById('modalAccount').style.display='none'" id="closeAccountModal" title="Close Modal">×</span>
+
+                    <div id="InformationProfile">
+                        <img src="{{ asset('Directory/IconProfile.png')}}"  alt="profil" id="imgAccountProfile">
+                        {% if app.user%}
+                            <p id="">{{app.user.firstName}} {{app.user.lastName}}</p>
+                            <p>{{ app.user.email }}</p>
+                            <button id="btn-modifierProfile">Modifier le Profil</button>
+                        {% endif %}
+                    </div>
+
+                    <div id="link-admin">
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a class="" href="{{path('app_lesson_index')}}" title="Liste des leçons">Liste des Leçons</a>
+
+                            <a class="" href="{{path('app_coach')}}" title="Liste des coach">Liste des Coach</a>
+
+                            <a class="" href="{{path('app_sport')}}" title="Liste des sports">Liste des Sports</a>
+
+                        {% elseif is_granted('ROLE_USER') %}
+                            <a class="" href="{{path('app_home')}}" title="Nous_Contacter">Nous Contacter</a>
+
+                        {% endif %}
+                    </div>
+
+                    <a id="logout" href="{{path('app_logout')}}">Se Déconnecter</a>
                 </div>
-                <div id="link-admin">
-                    <a class="" href="{{path('app_lesson_index')}}" title="Liste des leçon">List des Lecons</a>
-
-                    <a class="" href="{{path('app_coach')}}" title="List des coach">List des Coach</a>
-
-                    <a class="" href="{{path('app_sport')}}" title="List des sports">List des Sports</a>
-                </div>
-
-                <a id="logout" href="{{path('app_logout')}}">Se Déconecter</a>
-            </div>
-
-
-                {# <div>
-                    {% if app.user%}
-                        <div id="BlockProfil">
-
-                            <div>
-
-                            </div>
-                        </div>
-                    {% else %}
-                        <div id="BlockProfil">
-                            <img src="{{ asset('Directory/IconProfil.png')}}" alt="profil" id="img-profil">
-                            <div>
-                                <a id="login" href="{{path('app_login')}}">Connection</a>
-                            </div>
-                        </div>
-                    {% endif %}
-                </div> #}
+            {% endif %}
         {% endblock %}
 
         {% block body %}
-
         {% endblock %}
     </body>
 </html>

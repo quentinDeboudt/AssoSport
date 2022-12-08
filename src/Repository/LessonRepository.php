@@ -54,6 +54,16 @@ class LessonRepository extends ServiceEntityRepository
 //        ;
 //    }
 
+
+
+//     * @return Lesson[] Returns an array of Lesson objects
+//     */
+//    public function findByExampleField($value): array
+//    {
+//        $dql =[
+
+//    }
+
 //    public function findOneBySomeField($value): ?Lesson
 //    {
 //        return $this->createQueryBuilder('l')
