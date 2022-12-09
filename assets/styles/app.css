@@ -221,7 +221,7 @@ background-color: #D9D9D9 ;
     left: 16px;
     font-size: 140px;
     color: #FFFFFF;
-    text-shadow: black 0 0 20px;
+    text-shadow: black 0 0 10rem;
 }
  #Block-image #Multisport{
      position: absolute;
@@ -388,7 +388,7 @@ background-color: #D9D9D9 ;
     font-size: 146px;
     margin: 0;
     color: #FFFFFF;
-    top: -72px;
+    bottom: 110px;
  }
 #block-all-contact{
     display: flex;
@@ -407,9 +407,13 @@ background-color: #D9D9D9 ;
 #block-all-contact div:hover{
     background-color: #999999;
 }
-#block-all-contact div:nth-child(3) p{
-    padding:6px;
+#block-all-contact div:nth-child(2) p{
+    padding:4px;
     margin: 0;
+    font-size: 25px;
+}
+#block-all-contact div:nth-child(2){
+    margin-bottom: 30px;
 }
 
 
@@ -767,6 +771,7 @@ background-color: #D9D9D9 ;
     padding: 5px;
     font-size: 20px;
     border-radius: 20px;
+    width: fit-content;
     margin: 5px;
 }
 
@@ -774,6 +779,7 @@ background-color: #D9D9D9 ;
     background-color: #55af55;
     color: #FFFFFF;
     padding: 5px;
+    width: fit-content;
     font-size: 20px;
     border-radius: 20px;
     margin: 5px;
@@ -786,6 +792,8 @@ background-color: #D9D9D9 ;
     font-size: 20px;
     border-radius: 20px;
     margin: 5px;
+    width: fit-content;
+
 }
 
 .container-btn-show{
@@ -868,4 +876,21 @@ background-color: #D9D9D9 ;
 }
  #block-login .checkbox{
      text-align: center;
+ }
+
+
+
+/************************* modify profile **************************/
+/***********************************************************/
+ .disAct{
+     background-color: #999999;
+     border-radius: 20px;
+     color: black;
+     display: flex;
+     flex-direction: column;
+     align-content: center;
+     width: fit-content;
+     margin-right: auto;
+     margin-left: auto;
+     margin-top: 10rem;
  }

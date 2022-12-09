@@ -63,7 +63,7 @@
                         {% if app.user%}
                             <p id="">{{app.user.firstName}} {{app.user.lastName}}</p>
                             <p>{{ app.user.email }}</p>
-                            <button id="btn-modifierProfile">Modifier le Profil</button>
+                            <button id="btn-modifierProfile" href="{{path('app_user_profile')}}"><a  href="{{path('app_user_profile')}}" style="color: #B0413E" >Modifier le Profil</a></button>
                         {% endif %}
                     </div>
 

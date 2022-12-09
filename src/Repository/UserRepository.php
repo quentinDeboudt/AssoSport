@@ -9,6 +9,8 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use function MongoDB\BSON\toJSON;
+use function Symfony\Component\String\u;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -57,9 +59,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->save($user, true);
     }
 
-    /**
-    * @return User[] Returns an array of Participant objects
-    */
+
     public function findUserLesson(): array
     {
         // Realisation de la requete
@@ -73,7 +73,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $queryBuilder->leftJoin(`location` , 'lo', 'ON', 'lo.id = l.location_id');
         $queryBuilder->leftJoin(`sport` , 'sp', 'ON', 'sp.id = l.id');
         $queryBuilder->addSelect('s', 'p', 'o', 'pl', 'c');
-        $queryBuilder->where('u.id = 19');
+        $queryBuilder->where('u.id = ?19');
         //$queryBuilder->where('u = ?21');
 
         //Récuperation des données en BDD suite à la requête

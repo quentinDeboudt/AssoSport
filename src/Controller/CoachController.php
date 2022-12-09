@@ -77,6 +77,7 @@ class CoachController extends AbstractController
     }
 
     //######################## delete coach #########################\\
+    /*
     #[Route('/{id}', name: 'app_coach_delete', methods: ['POST'])]
     public function delete(Request $request, Coach $coach, CoachRepository $coachRepository): Response
     {
@@ -85,5 +86,5 @@ class CoachController extends AbstractController
         }
 
         return $this->redirectToRoute('app_coach', [], Response::HTTP_SEE_OTHER);
-    }
+    }*/
 }

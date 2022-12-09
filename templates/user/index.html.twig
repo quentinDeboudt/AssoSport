@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+    {%if app.user%}
+        <div class="disAct">
+            <div class="avatar">
+                {%if user.brochureFilename%}
+                    <img src="{{ asset('uploads/brochures/' ~ user.brochureFilename())}}" alt="Image de profil">
+                {%else%}
+                    <img src="{{ asset('img/default-avatar.png')}}" alt="Image de profil" style=" width: 75px; height: 75px;padding-bottom: 20px;">
+                {%endif%}
+            </div>
+            {{ form_start(editProfilForm) }}
+
+
+            {{ form_errors(editProfilForm) }}
+            <div class="inputModifyProfile">
+                {{ form_row(editProfilForm.firstname)}}
+            </div>
+            <div class="inputModifyProfile">
+                {{ form_row(editProfilForm.lastname)}}
+            </div>
+            <div class="inputModifyProfile">
+                {{ form_row(editProfilForm.email)}}
+            </div>
+            <div class="inputModifyProfile">
+                {{ form_row(editProfilForm.password)}}
+            </div>
+            <div class="coco2" >
+                {{ form_row(editProfilForm.brochure)}}
+            </div>
+
+            <button  class="btn-show-save" >{{ button_label|default('Save') }}</button>
+
+            <div class="btn-show-retour">
+                <a href="{{path('app_home')}}"><button>Annuler</button></a>
+            </div>
+            {{ form_end(editProfilForm) }}
+
+            <button onClick="window.history.back();" type="button" class="btnAct">Page précédente</button>
+        </div>
+    {%endif%}
+
+
+{% endblock %}

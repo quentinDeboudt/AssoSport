@@ -24,7 +24,7 @@ class SportController extends AbstractController
     }
 
 
-
+/*
     //######################## Show Sport #########################\\
     #[Route('/{id}', name: 'app_sport_show')]
     public function show(Sport $sport): Response
@@ -34,7 +34,7 @@ class SportController extends AbstractController
             'controller_name' => 'SportController',
             'sport' => $sport,
         ]);
-    }
+    }*/
 
     //######################## edit Sport #########################\\
     #[Route('/{id}/edit', name: 'app_sport_edit')]
@@ -78,6 +78,7 @@ class SportController extends AbstractController
     }
 
     //######################## delete Sport #########################\\
+    /*
     #[Route('/{id}', name: 'app_sport_delete', methods: ['POST'])]
     public function delete(Request $request, Sport $sport, SportRepository $sportRepository): Response
     {
@@ -86,5 +87,5 @@ class SportController extends AbstractController
         }
 
         return $this->redirectToRoute('app_sport', [], Response::HTTP_SEE_OTHER);
-    }
+    } */
 }
