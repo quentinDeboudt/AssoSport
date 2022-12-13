@@ -18,10 +18,8 @@ class PlanningController extends AbstractController
     #[Route('/planning', name: 'app_planning')]
     public function index(LessonRepository $lessonRepository, UserInterface $user): Response
     {
-
         $events = $lessonRepository->findAll();
 
-        dump($events);
         $lessons = [];
 
         foreach ($events as $event){

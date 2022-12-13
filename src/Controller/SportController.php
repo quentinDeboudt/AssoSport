@@ -15,6 +15,9 @@ class SportController extends AbstractController
     #[Route('/sport', name: 'app_sport')]
     public function index(SportRepository $sportRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         $lstSport = $sportRepository->findAll();
 
         return $this->render('sport/index.html.twig', [
@@ -29,6 +32,9 @@ class SportController extends AbstractController
     #[Route('/{id}', name: 'app_sport_show')]
     public function show(Sport $sport): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
 
         return $this->render('sport/show.html.twig', [
             'controller_name' => 'SportController',
@@ -40,6 +46,9 @@ class SportController extends AbstractController
     #[Route('/{id}/edit', name: 'app_sport_edit')]
     public function edit(Request $request, Sport $sport, SportRepository $sportRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         $form = $this->createForm(SportType::class, $sport);
         $form->handleRequest($request);
 
@@ -60,6 +69,9 @@ class SportController extends AbstractController
     #[Route('/new', name: 'app_sport_new', methods: ['GET', 'POST'])]
     public function new(Request $request, SportRepository $sportRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         $sport = new Sport();
         $form = $this->createForm(SportType::class, $sport);
         $form->handleRequest($request);
@@ -82,6 +94,9 @@ class SportController extends AbstractController
     #[Route('/{id}', name: 'app_sport_delete', methods: ['POST'])]
     public function delete(Request $request, Sport $sport, SportRepository $sportRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         if ($this->isCsrfTokenValid('delete'.$sport->getId(), $request->request->get('_token'))) {
             $sportRepository->remove($sport, true);
         }

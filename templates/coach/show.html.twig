@@ -13,7 +13,13 @@
             </tr>
             <tr>
                 <th>Sport</th>
-                <td>{{ coach.id }}</td>
+                <td>
+                    <ul>
+                        {%for sport in sports %}
+                            <li>{{ sport.name }} </li>
+                        {% endfor %}
+                    </ul>
+                </td>
             </tr>
         </tbody>
     </table>

@@ -2,7 +2,25 @@
 
 {% block title %}AssoSport{% endblock %}
 
+{% block javascripts %}
+    <script>
+
+
+    </script>
+{% endblock %}
+
 {% block body %}
+
+
+        {# read and display just one flash message type #}
+        {% for message in app.flashes('message') %}
+            <div id="body-message-flash">
+                <div id="flash-message" >
+                    <span onclick="document.getElementById('body-message-flash').style.display='none'" id="closeMessage" title="Close">×</span>
+                    {{ message }}
+                </div>
+            </div>
+        {% endfor %}
 
     <!-- ##########_First bloc home_########## -->
     <div id="Block-image">

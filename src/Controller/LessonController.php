@@ -14,10 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/lesson')]
 class LessonController extends AbstractController
 {
+
     #[Route('/', name: 'app_lesson_index', methods: ['GET'])]
     public function index(LessonRepository $lessonRepository): Response
     {
-        dump($lessonRepository->findAll());
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('lesson/index.html.twig', [
             'lessons' => $lessonRepository->findAll(),
 
@@ -31,6 +34,10 @@ class LessonController extends AbstractController
     #[Route('/new', name: 'app_lesson_new', methods: ['GET', 'POST'])]
     public function new(Request $request, LessonRepository $lessonRepository, StateRepository $stateRepository): Response
     {
+
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
@@ -55,6 +62,9 @@ class LessonController extends AbstractController
     #[Route('/{id}', name: 'app_lesson_show', methods: ['GET'])]
     public function show(Lesson $lesson): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         return $this->render('lesson/show.html.twig', [
             'lesson' => $lesson,
         ]);
@@ -66,6 +76,9 @@ class LessonController extends AbstractController
     #[Route('/{id}/edit', name: 'app_lesson_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Lesson $lesson, LessonRepository $lessonRepository, StateRepository $stateRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         $form = $this->createForm(LessonType::class, $lesson);
         $form->handleRequest($request);
 
@@ -87,6 +100,9 @@ class LessonController extends AbstractController
     #[Route('/{id}', name: 'app_lesson_delete', methods: ['POST'])]
     public function delete(Request $request, Lesson $lesson, LessonRepository $lessonRepository): Response
     {
+        if (!$this->isGranted('IS_AUTHENTICATED_FULLY')) {
+            return $this->redirectToRoute('app_login');
+        }
         if ($this->isCsrfTokenValid('delete'.$lesson->getId(), $request->request->get('_token'))) {
             $lessonRepository->remove($lesson, true);
         }

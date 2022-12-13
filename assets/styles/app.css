@@ -838,7 +838,39 @@ background-color: #D9D9D9 ;
 
 /********************* Lesson/coach/sport show **********************/
 /*********************************************************************/
-
+#body-message-flash{
+    z-index: 22;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(153, 153, 153, 0.57);
+}
+#flash-message{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #FFFFFF;
+    border: black solid 2px;
+    border-radius: 20px;
+    margin-top: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 10px 1px 40px 10px;
+    font-size: 22px;
+    width: 300px;
+    right: 30px;
+    color: black;
+    z-index: 24;
+}
+#closeMessage{
+    cursor: pointer;
+    color: black;
+    font-size: 25px;
+    font-weight: bolder;
+}
+#closeMessage:hover{
+    color: red;
+}
 
 
 
@@ -851,7 +883,7 @@ background-color: #D9D9D9 ;
     flex-direction: column;
     border: black solid 2px;
     width: fit-content;
-    margin-top: 100px;
+    margin-top: 200px;
     margin-right: auto;
     margin-left: auto;
     padding: 20px;
@@ -878,19 +910,30 @@ background-color: #D9D9D9 ;
      text-align: center;
  }
 
-
-
 /************************* modify profile **************************/
 /***********************************************************/
- .disAct{
+ #BlockModifyProfile{
      background-color: #999999;
      border-radius: 20px;
      color: black;
      display: flex;
      flex-direction: column;
-     align-content: center;
+     padding-left: 20px;
      width: fit-content;
      margin-right: auto;
      margin-left: auto;
      margin-top: 10rem;
+ }
+#BlockModifyProfile #avatar{
+    margin: auto;
+    padding-right: 20px;
+    padding-top: 20px;
+    text-align: center;
+    display: flex;
+
+}
+ .inputModifyProfile{
+     border-radius: 20px;
+     padding: 3px;
+     margin: 2px;
  }

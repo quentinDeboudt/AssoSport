@@ -4,17 +4,20 @@
 
 {% block body %}
     {%if app.user%}
-        <div class="disAct">
-            <div class="avatar">
-                {%if user.brochureFilename%}
-                    <img src="{{ asset('uploads/brochures/' ~ user.brochureFilename())}}" alt="Image de profil">
+        <div id="BlockModifyProfile">
+            <div id="avatar">
+                {%if app.user.brochureFilename%}
+                    <div id="account-image" >
+                        <img id="img-profil" src="{{ asset(app.user.brochureFilename)}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'" >
+                    </div>
                 {%else%}
-                    <img src="{{ asset('img/default-avatar.png')}}" alt="Image de profil" style=" width: 75px; height: 75px;padding-bottom: 20px;">
+                    <div id="account-image" >
+                        <img id="img-profil" src="{{ asset('Directory/IconProfil.png')}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'">
+                    </div>
                 {%endif%}
             </div>
+
             {{ form_start(editProfilForm) }}
-
-
             {{ form_errors(editProfilForm) }}
             <div class="inputModifyProfile">
                 {{ form_row(editProfilForm.firstname)}}
@@ -42,6 +45,4 @@
             <button onClick="window.history.back();" type="button" class="btnAct">Page précédente</button>
         </div>
     {%endif%}
-
-
 {% endblock %}

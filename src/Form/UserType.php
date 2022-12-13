@@ -27,14 +27,20 @@ class UserType extends AbstractType
             ->add('firstname', TextType::class,[
                 'label' =>"prenom",
                 'attr' => [
-                    'class' => 'classlabel'
+                    'class' => 'inputModifyProfile'
                 ],
                 ])
             ->add('lastname', TextType::class,[
                 'label' =>"nom",
+                'attr' => [
+                    'class' => 'inputModifyProfile'
+                ],
             ])
             ->add('email', TextType::class,[
                 'label' =>"Email : ",
+                'attr' => [
+                    'class' => 'inputModifyProfile'
+                ],
                 'constraints' => [
                     new Email([
                         'message' => 'L\'adresse email {{ value }} n\'est pas une adresse email valide.'
@@ -47,14 +53,18 @@ class UserType extends AbstractType
             ->add('password', RepeatedType::class,[
                 'type' => PasswordType::class,
                 'invalid_message' => 'Le mot de passe ne correspond pas à sa confirmation.',
-                'attr' => [
-                    'class' => 'classlabel'
-                ],
+
                 'first_options' => [
+                    'attr' => [
+                        'class' => 'inputModifyProfile'
+                    ],
                     'label' => 'Mot de passe : ',
 //                   'help' => 'Le mot de passe doit contenir au minimum 8 caractères dont une minuscule, une majuscule, un chiffre et un caractère spécial.',
                 ],
                 'second_options' => [
+                    'attr' => [
+                        'class' => 'inputModifyProfile'
+                    ],
                     'label' => 'Confirmation : ',
                 ],
                 'mapped' => false,
@@ -78,6 +88,9 @@ class UserType extends AbstractType
 
             ->add('brochure', FileType::class, [
                 'label' => 'Ma photo : ',
+                'attr' => [
+                    'class' => 'inputModifyProfile'
+                ],
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

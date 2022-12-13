@@ -64,6 +64,7 @@ class LessonType extends AbstractType
                         'rose de chine'=> '#E072A4',
                         'rose clair'=> '#FFA5AB',
                         'rose lavande'=> '#D8A7CA',
+                        'noir'=> 'black',
                     )
                 ))
             ->add('AllDay', ChoiceType::class,
@@ -105,6 +106,7 @@ class LessonType extends AbstractType
                         'rose de chine'=> '#E072A4',
                         'rose clair'=> '#FFA5AB',
                         'rose lavande'=> '#D8A7CA',
+                        'noir'=> 'black',
                     )
 
                 ))
@@ -139,6 +141,7 @@ class LessonType extends AbstractType
                         'rose de chine'=> '#E072A4',
                         'rose clair'=> '#FFA5AB',
                         'rose lavande'=> '#D8A7CA',
+                        'noir'=> 'black',
                     )
 
                 ))
@@ -150,7 +153,6 @@ class LessonType extends AbstractType
                 'class' => Coach::class,
                 'choice_label' => 'name',
             ])
-
         ;
     }
 

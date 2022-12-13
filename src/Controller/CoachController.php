@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Coach;
 use App\Form\CoachType;
 use App\Repository\CoachRepository;
+use http\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,12 +16,14 @@ class CoachController extends AbstractController
     #[Route('/coach', name: 'app_coach')]
     public function index(CoachRepository $coachRepository): Response
     {
+
         $lstCoach = $coachRepository->findAll();
 
         return $this->render('coach/index.html.twig', [
             'controller_name' => 'CoachController',
             'lstCoach' => $lstCoach,
         ]);
+
     }
 
 
@@ -29,10 +32,13 @@ class CoachController extends AbstractController
     #[Route('/Coach/{id}', name: 'app_coach_show')]
     public function show(Coach $coach): Response
     {
+        $sportCoach = $coach->getSports();
+        dump($sportCoach);
 
         return $this->render('coach/show.html.twig', [
             'controller_name' => 'CoachController',
             'coach' => $coach,
+            'sports' => $sportCoach,
         ]);
     }
 
@@ -77,7 +83,7 @@ class CoachController extends AbstractController
     }
 
     //######################## delete coach #########################\\
-    /*
+
     #[Route('/{id}', name: 'app_coach_delete', methods: ['POST'])]
     public function delete(Request $request, Coach $coach, CoachRepository $coachRepository): Response
     {
@@ -86,5 +92,5 @@ class CoachController extends AbstractController
         }
 
         return $this->redirectToRoute('app_coach', [], Response::HTTP_SEE_OTHER);
-    }*/
+    }
 }

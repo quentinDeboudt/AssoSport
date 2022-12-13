@@ -10,7 +10,6 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
-            <th>sport</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -19,8 +18,6 @@
             <tr>
                 <td>{{ coach.id }}</td>
                 <td>{{ coach.Name }}</td>
-                <td>{{ coach.Name }}</td>
-
                 <td>
                     <a class="btn-action" href="{{ path('app_coach_show', {'id': coach.id}) }}">show</a>
                     <a class="btn-action" href="{{ path('app_coach_edit', {'id': coach.id}) }}">edit</a>

@@ -43,9 +43,15 @@
                 </div>
 
                 {% if app.user%}
-                    <div id="account-image" >
-                        <img src="{{ asset('Directory/IconProfil.png')}}" alt="profil" id="img-profil" onclick="document.getElementById('modalAccount').style.display='block'">
-                    </div>
+                    {%if app.user.brochureFilename%}
+                        <div id="account-image" >
+                            <img id="img-profil" src="{{ asset(app.user.brochureFilename)}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'" >
+                        </div>
+                    {%else%}
+                        <div id="account-image" >
+                            <img id="img-profil" src="{{ asset('Directory/IconProfil.png')}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'">
+                        </div>
+                    {%endif%}
                 {% else %}
                     <div>
                         <a id="link-connection" href="{{path('app_login')}}" title="Se_Connecter">Se Connecter</a>
@@ -59,7 +65,15 @@
                     <span onclick="document.getElementById('modalAccount').style.display='none'" id="closeAccountModal" title="Close Modal">×</span>
 
                     <div id="InformationProfile">
-                        <img src="{{ asset('Directory/IconProfile.png')}}"  alt="profil" id="imgAccountProfile">
+                        {%if app.user.brochureFilename%}
+                            <div id="account-image" >
+                                <img id="img-profil" src="{{ asset(app.user.brochureFilename)}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'" >
+                            </div>
+                        {%else%}
+                            <div id="account-image" >
+                                <img id="img-profil" src="{{ asset('Directory/IconProfil.png')}}" alt="Image de profil" onclick="document.getElementById('modalAccount').style.display='block'">
+                            </div>
+                        {%endif%}
                         {% if app.user%}
                             <p id="">{{app.user.firstName}} {{app.user.lastName}}</p>
                             <p>{{ app.user.email }}</p>
