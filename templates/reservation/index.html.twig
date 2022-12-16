@@ -19,7 +19,7 @@
     </div>
 
 
-    <!-- ##########_Second bloc Reservation_########## -->
+    <!-- ##########_Lst Reservation_########## -->
     <section>
         {% for lesson in lstLesson %}
             <div id="Block-lesson-reservation">
@@ -35,7 +35,7 @@
 
                 <div id="Block-lesson-reservation-info">
                     <div>
-                        <p>{{lesson.Participants|length}} / {{ lesson.NbPlace }}</p>
+                        <p>{{ lesson.Participants|length }} / {{ lesson.NbPlace }}</p>
                         <p>{{ lesson.Coach }}</p>
                         <p>{{ lesson.location }}</p>
                     </div>
