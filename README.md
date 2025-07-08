@@ -23,7 +23,8 @@ Les principales spécifications à respecter :
 
 ## Maquettage
 ![image](https://github.com/user-attachments/assets/cba204ba-3f3e-4bf3-9fa1-f018ad038501)
-![image](https://github.com/user-attachments/assets/8d7d4a3e-17a2-4a7c-b21a-f0d318f890b6)
+![image](https://github.com/user-attachments/assets/ceb1c2da-c545-4726-b6b8-a9652be6d666)
+
 
 
 ## Schéma de base de données
