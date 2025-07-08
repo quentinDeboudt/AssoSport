@@ -50,20 +50,21 @@ Flexibilité : grâce à un parseur puissant, Twig permet la création de struct
 ### Réalisation de la Base de Données
 
 L’utilisation du framework **Symfony** permet de générer automatiquement le schéma de la base de données via la commande suivante :
-
 ```bash
 php bin/console doctrine:schema:update --force
 ```
-
-
 Cette commande crée et met à jour les différentes tables, en configurant les relations et les clés étrangères conformément aux entités définies dans le code. Cette génération repose sur l’ORM Doctrine, qui assure la gestion des objets métiers et leur correspondance avec la base de données relationnelle.
 
 Par ailleurs, la commande suivante :
 ```bash
 php bin/console doctrine:fixtures:load
 ```
+permet de purger la base de données (suppression intégrale des données présentes dans chaque table) et de charger un jeu de données initial (fixtures), facilitant ainsi les phases de développement et de tests.
 
 
+## Réalisation des Composants d’Accès aux Données (Annexe #2)
+Le framework Symfony met à disposition l’ensemble des outils nécessaires à l’interaction avec la base de données via Doctrine, son ORM (Object-Relational Mapper) natif.
+Doctrine fait office d’intermédiaire entre l’application et la base de données, permettant de manipuler les données à l’aide d’un langage objet tout en générant et exécutant automatiquement les requêtes SQL sous-jacentes.
 
 
 
