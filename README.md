@@ -1,7 +1,7 @@
 Asso Sport
 
 ## Contexte:
-site web pour une Association Sportive. Les adhérents peuvent s’inscrire à différents cours de la semaine
+Site web pour une Association Sportive. Les adhérents peuvent s’inscrire à différents cours de la semaine
 (musculation, Dance, Vélo…), et les Coachs peuvent gérer et créer les leçons avec leurs différents sports respectifs.
 Pour la partie administrateur, il peut créer, modifier et supprimer différents coachs, sport et leçons.
 
