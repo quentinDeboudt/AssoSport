@@ -21,59 +21,50 @@ Les principales spécifications à respecter :
 
 ---
 
-## 🎨 Maquettage
+## Maquettage
 ![image](https://github.com/user-attachments/assets/cba204ba-3f3e-4bf3-9fa1-f018ad038501)
+![image](https://github.com/user-attachments/assets/8d7d4a3e-17a2-4a7c-b21a-f0d318f890b6)
+![image](https://github.com/user-attachments/assets/7c96d2fa-9a61-43a0-a4b4-e043866cfd35)
+![image](https://github.com/user-attachments/assets/ad662e51-01a8-4474-9d65-c11b99058e9f)
 
 
-### 🏠 Accueil
-*(capture ou description rapide de la page d’accueil)*
+## Schéma de base de données
 
-### 📅 Planning
-*(capture ou description rapide de l’agenda/planification)*
+![image](https://github.com/user-attachments/assets/2eab8b5f-dd76-43a3-9310-cd2f845ed256)
 
-### 📌 Réservation
-*(capture ou description rapide du module de réservation)*
 
----
+## Technologies utilisées : Symfony & Twig
 
-## 🗃️ Schéma de la Base de Données
-Présentation du modèle relationnel utilisé dans le projet.
+Dans le cadre de ce projet, j’ai choisi d’utiliser Symfony, un framework PHP open source reposant sur le paradigme MVC (Modèle–Vue–Contrôleur). Reconnue pour sa robustesse et sa flexibilité, cette solution est l’une des plus répandues au sein de la communauté PHP. Elle est particulièrement adaptée au développement d’applications web complexes, évolutives et performantes.
 
----
+Pour la gestion de l’affichage côté front-end, le moteur de templates Twig a été utilisé. Il s’agit du moteur de rendu natif de Symfony, conçu pour faciliter la séparation des couches métier et présentation.
 
-## 🔁 Diagramme d’État
-Diagramme décrivant les transitions d’état de l’application ou d’un composant clé.
+Les principaux avantages de Twig sont les suivants :
 
----
+Performance : le code généré est compilé en PHP optimisé, assurant une exécution rapide.
 
-## ⚙️ Ressources Logicielles
-- **Système d’exploitation** : [ex : Windows 10, Ubuntu 22.04]
-- **Serveur web** : [ex : Apache, Nginx]
-- **Serveur d'application** : [ex : Node.js, Spring Boot]
-- *(ajoute selon ton stack)*
+Sécurité : Twig intègre un système de sandboxing et une gestion automatique de l’échappement des variables, réduisant fortement les risques liés aux failles XSS.
 
----
+Flexibilité : grâce à un parseur puissant, Twig permet la création de structures de templates modulables et réutilisables, facilitant la maintenance et l’évolutivité de l’interface utilisateur.
 
-## 🧰 Technologies & Outils Utilisés
+### Réalisation de la Base de Données
 
-### 💻 Langages
-- [ex : JavaScript, Java, SQL]
+L’utilisation du framework **Symfony** permet de générer automatiquement le schéma de la base de données via la commande suivante :
 
-### 🧠 IDE / Éditeurs
-- [ex : VS Code, IntelliJ]
+```bash
+php bin/console doctrine:schema:update --force
+```
 
-### 🗄️ Base de Données
-- [ex : MySQL, PostgreSQL]
 
-### 🌱 Versioning
-- Git & GitHub / GitLab pour la gestion de version du projet
+Cette commande crée et met à jour les différentes tables, en configurant les relations et les clés étrangères conformément aux entités définies dans le code. Cette génération repose sur l’ORM Doctrine, qui assure la gestion des objets métiers et leur correspondance avec la base de données relationnelle.
 
----
+Par ailleurs, la commande suivante :
+```bash
+php bin/console doctrine:fixtures:load
+```
 
-## 🗂️ Organisation du Projet
 
-### 🛠️ Structure Back-End
-Description de la structure des dossiers et des fichiers côté serveur.
 
-### 🎨 Structure Front-End
-Description de la structure des composants et vues côté client.
+
+
+
